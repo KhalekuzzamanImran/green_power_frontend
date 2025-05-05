@@ -24,7 +24,10 @@ function App() {
             <div className="col-4 bg-primary">
               <PieChartsContainer />
             </div>
-            <div className="col-8 bg-warning">
+            <div
+              className="col-8 h-100 border-start border-secondary border-2"
+              style={{ backgroundColor: "#d1f8fd" }}
+            >
               <ReactFlowDiagram />
             </div>
           </div>
