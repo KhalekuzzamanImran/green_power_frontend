@@ -31,7 +31,7 @@ const PieChart = (props) => {
   const series = [44, 55, 13]; // Data for the pie slices
 
   return (
-    <div className="pie-chart bg-warning d-flex justify-content-center align-items-center">
+    <div className="bg-secondary d-flex justify-content-center align-items-center">
       {props.isShowLegend ? (
         <div
           style={{ fontSize: "12px", color: "white" }}
