@@ -9,7 +9,7 @@ function App() {
       className="bg-secondary container-xxl d-grid"
       style={{
         height: "100vh",
-        gap: "10px",
+        gap: "5px",
         gridTemplateRows: "1fr 3fr 1.5fr",
       }}
     >
@@ -22,7 +22,7 @@ function App() {
         style={{
           display: "grid",
           gridTemplateColumns: "7fr 3fr",
-          gap: "10px",
+          gap: "7px",
         }}
       >
         {/* Left Column: Contains Pie Charts and React Flow */}
@@ -30,7 +30,7 @@ function App() {
           className="bg-danger d-grid"
           style={{
             gridTemplateRows: "1fr 9fr",
-            gap: "5px",
+            gap: "0px",
           }}
         >
           {/* Left Column Heading */}
@@ -58,7 +58,7 @@ function App() {
               className="bg-success d-grid"
               style={{
                 gridTemplateRows: "1fr 1fr",
-                gap: "10px",
+                gap: "5px",
               }}
             >
               {/* Row 1: Pie Chart Legends and Pie Chart */}
@@ -66,7 +66,7 @@ function App() {
                 className="d-grid"
                 style={{
                   gridTemplateColumns: "3fr 7fr",
-                  gap: "10px",
+                  gap: "7px",
                 }}
               >
                 <div className="bg-primary">Pie Charts Legends</div>
@@ -78,7 +78,7 @@ function App() {
                 className="d-grid"
                 style={{
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "10px",
+                  gap: "7px",
                 }}
               >
                 <div className="bg-light">Pie Chart 3</div>
@@ -121,7 +121,7 @@ function App() {
         className="bg-success d-grid"
         style={{
           gridTemplateColumns: "1fr 1fr",
-          gap: "10px",
+          gap: "7px",
         }}
       >
         {/* Bar Chart */}
