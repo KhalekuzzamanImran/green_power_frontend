@@ -1,5 +1,6 @@
 import AreaChart from "./components/AreaChart";
 import BarChart from "./components/BarChart";
+import InfoCard from "./components/InfoCard";
 import Legends from "./components/Legends";
 import PieChart from "./components/PieChart";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
@@ -158,9 +159,39 @@ function App() {
                 gap: "3px",
               }}
             >
-              <div className="bg-primary"></div>
-              <div className="bg-warning"></div>
-              <div className="bg-danger"></div>
+              <InfoCard
+                title={
+                  <>
+                    Live
+                    <br />
+                    Generation
+                  </>
+                }
+                value={`114.91`}
+                icon={`liveGeneration`}
+              />
+              <InfoCard
+                title={
+                  <>
+                    Cumulative
+                    <br />
+                    Generation
+                  </>
+                }
+                value={`114.91`}
+                icon={`cumulativeGeneration`}
+              />
+              <InfoCard
+                title={
+                  <>
+                    Cumulative
+                    <br />
+                    Savings
+                  </>
+                }
+                value={`114.91`}
+                icon={`liveGeneration`}
+              />
             </div>
             {/* Air Quality Info */}
             <div
@@ -170,10 +201,90 @@ function App() {
                 gap: "3px",
               }}
             >
-              <div className="bg-primary"></div>
-              <div className="bg-warning"></div>
-              <div className="bg-danger"></div>
-              <div className="bg-warning"></div>
+              <InfoCard
+                title={`PM 1.0`}
+                value={`34`}
+                icon={
+                  <div
+                    className="fw-semibold"
+                    style={{
+                      fontSize: "11px",
+                      lineHeight: "12px",
+                      textAlign: "start",
+                    }}
+                  >
+                    <span>
+                      {`< 10`}
+                      <br />
+                    </span>
+                    <span>µg/m&sup3;</span>
+                  </div>
+                }
+                flag="pm"
+              />
+              <InfoCard
+                title={`PM 2.5`}
+                value={`34`}
+                icon={
+                  <div
+                    className="fw-semibold"
+                    style={{
+                      fontSize: "11px",
+                      lineHeight: "12px",
+                      textAlign: "start",
+                    }}
+                  >
+                    <span>
+                      {`< 15`}
+                      <br />
+                    </span>
+                    <span>µg/m&sup3;</span>
+                  </div>
+                }
+                flag={`pm`}
+              />
+              <InfoCard
+                title={`PM 1.0`}
+                value={`34`}
+                icon={
+                  <div
+                    className="fw-semibold"
+                    style={{
+                      fontSize: "11px",
+                      lineHeight: "12px",
+                      textAlign: "start",
+                    }}
+                  >
+                    <span>
+                      {`< 45`}
+                      <br />
+                    </span>
+                    <span>µg/m&sup3;</span>
+                  </div>
+                }
+                flag={`pm`}
+              />
+              <InfoCard
+                title={`Humidity`}
+                value={`34`}
+                icon={
+                  <div
+                    className="fw-semibold"
+                    style={{
+                      fontSize: "11px",
+                      lineHeight: "12px",
+                      textAlign: "start",
+                    }}
+                  >
+                    <span>
+                      {`30%-`}
+                      <br />
+                    </span>
+                    <span>50%</span>
+                  </div>
+                }
+                flag={`humidity`}
+              />
             </div>
             {/* Life Energy Equivalent */}
             <div
