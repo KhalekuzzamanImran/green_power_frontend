@@ -15,7 +15,17 @@ function App() {
       }}
     >
       {/* Header Section */}
-      <div className="bg-primary d-grid"></div>
+      <div
+        className="bg-primary d-grid"
+        style={{
+          gridTemplateColumns: "2fr 6fr 2fr",
+          gap: "10px",
+        }}
+      >
+        <div className="bg-light"></div>
+        <div className="bg-warning"></div>
+        <div className="bg-danger"></div>
+      </div>
       {/* Main Content Section */}
       <div
         className="bg-danger d-grid"
@@ -126,7 +136,52 @@ function App() {
           >
             Solar System Supplimentary Info
           </div>
-          <div className="bg-success"></div>
+          {/* Sidebar Content */}
+          <div
+            className="bg-success d-grid"
+            style={{
+              gridTemplateRows: "1fr 1fr 2fr",
+              gap: "5px",
+            }}
+          >
+            {/* Supplimentary Info */}
+            <div
+              className="bg-danger d-grid"
+              style={{
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: "3px",
+              }}
+            >
+              <div className="bg-primary"></div>
+              <div className="bg-warning"></div>
+              <div className="bg-danger"></div>
+            </div>
+            {/* Air Quality Info */}
+            <div
+              className="bg-primary d-grid"
+              style={{
+                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                gap: "3px",
+              }}
+            >
+              <div className="bg-primary"></div>
+              <div className="bg-warning"></div>
+              <div className="bg-danger"></div>
+              <div className="bg-warning"></div>
+            </div>
+            {/* Life Energy Equivalent */}
+            <div
+              className="bg-warning d-grid"
+              style={{
+                gridTemplateRows: "1fr 1fr 1fr",
+                gap: "3px",
+              }}
+            >
+              <div className="bg-warning"></div>
+              <div className="bg-danger"></div>
+              <div className="bg-warning"></div>
+            </div>
+          </div>
         </div>
       </div>
       {/* Footer Section */}
