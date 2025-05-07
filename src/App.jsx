@@ -1,124 +1,109 @@
-import "./App.css";
-import PieChart from "./components/PieChart";
-import PieChartsContainer from "./components/PieChartsContainer";
-import ReactFlowDiagram from "./components/ReactFlowDiagram";
-
 function App() {
   return (
     <main
-      className="bg-secondary container-xxl d-grid"
+      className="bg-secondary container-xl d-grid"
       style={{
         height: "100vh",
-        gap: "5px",
         gridTemplateRows: "1fr 3fr 1.5fr",
+        gap: "5px",
       }}
     >
       {/* Header Section */}
-      <div className="bg-warning">Header</div>
-
-      {/* Content Section */}
+      <div className="bg-primary d-grid"></div>
+      {/* Main Content Section */}
       <div
-        className="bg-primary"
+        className="bg-danger d-grid"
         style={{
-          display: "grid",
           gridTemplateColumns: "7fr 3fr",
           gap: "7px",
         }}
       >
-        {/* Left Column: Contains Pie Charts and React Flow */}
+        {/* Left Content(Main) */}
         <div
-          className="bg-danger d-grid"
+          className="bg-primary d-grid"
           style={{
-            gridTemplateRows: "1fr 9fr",
-            gap: "0px",
+            gridTemplateRows: "1fr 10fr",
+            gap: "3px",
           }}
         >
-          {/* Left Column Heading */}
-          <div className="bg-warning">
-            <h1
-              className="text-center border border-2 rounded text-light fs-6 p-1"
-              style={{
-                backgroundColor: "#007a92",
-                letterSpacing: "2px",
-                height: "30px",
-              }}
-            >
-              Source - Generation - Consumption
-            </h1>
-          </div>
+          {/* Left Content Heading */}
           <div
-            className="bg-primary d-grid"
+            className="#007a92 text-center border border-2 rounded text-light fs-6"
             style={{
-              gridTemplateColumns: "5fr 7fr",
-              gap: "0px",
+              backgroundColor: "#007a92",
+              letterSpacing: "2px",
+              padding: "1px 0px",
             }}
           >
-            {/* Pie Charts Section: Contains 2 rows with two columns in each */}
+            Source - Generation - Consumption
+          </div>
+          {/* Pie Chart and React Flow Container */}
+          <div
+            className="bg-danger d-grid"
+            style={{
+              gridTemplateColumns: "5fr 7fr",
+            }}
+          >
+            {/* Pie Charts Container */}
             <div
-              className="bg-success d-grid"
+              className="bg-warning d-grid"
               style={{
-                gridTemplateRows: "1fr 1fr",
-                gap: "5px",
+                grieTemplateRows: "1fr 1fr",
+                gap: "3px",
               }}
             >
-              {/* Row 1: Pie Chart Legends and Pie Chart */}
+              {/* Pie Charts Row 1 */}
               <div
-                className="d-grid"
+                className="bg-danger d-grid"
                 style={{
                   gridTemplateColumns: "3fr 7fr",
-                  gap: "7px",
+                  gap: "3px",
                 }}
               >
-                <div className="bg-primary">Pie Charts Legends</div>
-                <div className="bg-light">Pie Chart 1</div>
+                <div className="bg-primary"></div>
+                <div className="bg-secondary"></div>
               </div>
-
-              {/* Row 2: Two Pie Charts */}
+              {/* Pie Charts Row 2 */}
               <div
-                className="d-grid"
+                className="bg-danger d-grid"
                 style={{
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "7px",
+                  gap: "3px",
                 }}
               >
-                <div className="bg-light">Pie Chart 3</div>
-                <div className="bg-primary">Pie Chart 4</div>
+                <div className="bg-primary"></div>
+                <div className="bg-light"></div>
               </div>
             </div>
-
-            {/* React Flow Section */}
-            <div className="bg-warning">React Flow Diagram</div>
+            {/* React Flow Diagram */}
+            <div className="bg-success"></div>
           </div>
         </div>
-
         {/* Sidebar Section */}
         <div
           className="bg-warning d-grid"
           style={{
-            gridTemplateRows: "1fr 9fr",
-            gap: "5px",
+            gridTemplateRows: "1fr 10fr",
+            gap: "3px",
           }}
         >
           {/* Sidebar Heading */}
-          <div className="bg-danger">
-            <h1
-              className="text-center border border-2 rounded text-light fs-6 p-1"
-              style={{
-                backgroundColor: "#007a92",
-                letterSpacing: "2px",
-                height: "30px",
-              }}
-            >
-              Solar System Supplimentary Info
-            </h1>
+          <div
+            className="#007a92 text-center border border-2 rounded text-light fs-6"
+            style={{
+              backgroundColor: "#007a92",
+              letterSpacing: "2px",
+              padding: "1px 0px",
+            }}
+          >
+            Solar System Supplimentary Info
           </div>
           <div className="bg-success"></div>
         </div>
       </div>
-
-      {/* Footer Section: Split into two equal columns */}
+      {/* Footer Section */}
       <div
-        className="bg-success d-grid"
+        className="bg-warning d-grid"
         style={{
           gridTemplateColumns: "1fr 1fr",
           gap: "7px",
@@ -126,25 +111,23 @@ function App() {
       >
         {/* Bar Chart */}
         <div
-          className="bg-warning d-grid"
+          className="bg-danger d-grid"
           style={{
             gridTemplateRows: "1fr 6fr",
           }}
         >
           {/* Bar Chart Heading */}
-          <div className="bg-danger">
-            <h1
-              className="text-center border border-2 rounded text-light fs-6"
-              style={{
-                backgroundColor: "#007a92",
-                letterSpacing: "2px",
-                padding: "2px 0px",
-              }}
-            >
-              Solar Generation Curve
-            </h1>
+          <div
+            className="#007a92 text-center border border-2 rounded text-light fs-6"
+            style={{
+              backgroundColor: "#007a92",
+              letterSpacing: "2px",
+              padding: "2px 0px",
+            }}
+          >
+            Solar Generation Curve
           </div>
-          <div className="bg-primary"></div>
+          <div className="bg-light"></div>
         </div>
         {/* Area Chart */}
         <div
@@ -154,19 +137,17 @@ function App() {
           }}
         >
           {/* Area Chart Heading */}
-          <div className="bg-warning">
-            <h1
-              className="text-center border border-2 rounded text-light fs-6"
-              style={{
-                backgroundColor: "#007a92",
-                letterSpacing: "2px",
-                padding: "2px 0px",
-              }}
-            >
-              Solar Generation Curve
-            </h1>
+          <div
+            className="#007a92 text-center border border-2 rounded text-light fs-6"
+            style={{
+              backgroundColor: "#007a92",
+              letterSpacing: "2px",
+              padding: "2px 0px",
+            }}
+          >
+            Day Load Curve
           </div>
-          <div className="bg-light"></div>
+          <div className="bg-danger"></div>
         </div>
       </div>
     </main>
