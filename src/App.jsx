@@ -2,6 +2,7 @@ import AreaChart from "./components/AreaChart";
 import BarChart from "./components/BarChart";
 import InfoCard from "./components/InfoCard";
 import Legends from "./components/Legends";
+import LifeEnergyEquivalents from "./components/LifeEnergyEquivalents";
 import PieChart from "./components/PieChart";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
 
@@ -39,8 +40,8 @@ function App() {
         <div
           className="bg-primary d-grid"
           style={{
-            gridTemplateRows: "1fr 10fr",
-            gap: "3px",
+            gridTemplateRows: "1fr 12fr",
+            gap: "2px",
           }}
         >
           {/* Left Content Heading */}
@@ -128,8 +129,8 @@ function App() {
         <div
           className="bg-warning d-grid"
           style={{
-            gridTemplateRows: "1fr 10fr",
-            gap: "3px",
+            gridTemplateRows: "1fr 12fr",
+            gap: "2px",
           }}
         >
           {/* Sidebar Heading */}
@@ -147,8 +148,8 @@ function App() {
           <div
             className="bg-success d-grid"
             style={{
-              gridTemplateRows: "1fr 1fr 2fr",
-              gap: "5px",
+              gridTemplateRows: "4fr 2fr 4fr 2fr 13fr",
+              padding: "5px 20px 0px",
             }}
           >
             {/* Supplimentary Info */}
@@ -193,6 +194,14 @@ function App() {
                 icon={`liveGeneration`}
               />
             </div>
+
+            {/* Air Quality heading */}
+            <div
+              className="bg-danger fw-bold d-flex justify-content-center align-items-end"
+              style={{ fontSize: "14px", paddingTop: "0px" }}
+            >
+              Air Quality Index
+            </div>
             {/* Air Quality Info */}
             <div
               className="bg-primary d-grid"
@@ -208,8 +217,8 @@ function App() {
                   <div
                     className="fw-semibold"
                     style={{
-                      fontSize: "11px",
-                      lineHeight: "12px",
+                      fontSize: "10px",
+                      lineHeight: "11px",
                       textAlign: "start",
                     }}
                   >
@@ -229,8 +238,8 @@ function App() {
                   <div
                     className="fw-semibold"
                     style={{
-                      fontSize: "11px",
-                      lineHeight: "12px",
+                      fontSize: "10px",
+                      lineHeight: "11px",
                       textAlign: "start",
                     }}
                   >
@@ -250,8 +259,8 @@ function App() {
                   <div
                     className="fw-semibold"
                     style={{
-                      fontSize: "11px",
-                      lineHeight: "12px",
+                      fontSize: "10px",
+                      lineHeight: "11px",
                       textAlign: "start",
                     }}
                   >
@@ -271,8 +280,8 @@ function App() {
                   <div
                     className="fw-semibold"
                     style={{
-                      fontSize: "11px",
-                      lineHeight: "12px",
+                      fontSize: "10px",
+                      lineHeight: "11px",
                       textAlign: "start",
                     }}
                   >
@@ -286,17 +295,47 @@ function App() {
                 flag={`humidity`}
               />
             </div>
+            <div
+              className="bg-danger fw-bold d-flex justify-content-center align-items-end"
+              style={{ fontSize: "14px", paddingTop: "0px" }}
+            >
+              Life Energy Equivalents
+            </div>
             {/* Life Energy Equivalent */}
             <div
               className="bg-warning d-grid"
               style={{
                 gridTemplateRows: "1fr 1fr 1fr",
-                gap: "3px",
+                gap: "2px",
               }}
             >
-              <div className="bg-warning"></div>
-              <div className="bg-danger"></div>
-              <div className="bg-warning"></div>
+              <LifeEnergyEquivalents
+                iconName="Tree"
+                title={
+                  <>
+                    Equivalent to saving at least{" "}
+                    <span className="fw-bold">245</span> trees.
+                  </>
+                }
+              />
+              <LifeEnergyEquivalents
+                iconName="CO₂"
+                title={
+                  <>
+                    Equivalent to saving at least{" "}
+                    <span className="fw-bold">1618 kg</span> of CO₂.
+                  </>
+                }
+              />
+              <LifeEnergyEquivalents
+                iconName="Coal"
+                title={
+                  <>
+                    Equivalent to saving at least{" "}
+                    <span className="fw-bold">649 kg</span> of Standard Coal.
+                  </>
+                }
+              />
             </div>
           </div>
         </div>
