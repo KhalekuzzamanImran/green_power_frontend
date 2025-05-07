@@ -1,6 +1,8 @@
 import AreaChart from "./components/AreaChart";
 import BarChart from "./components/BarChart";
+import Legends from "./components/Legends";
 import PieChart from "./components/PieChart";
+import ReactFlowDiagram from "./components/ReactFlowDiagram";
 
 function App() {
   return (
@@ -64,13 +66,13 @@ function App() {
                   gap: "3px",
                 }}
               >
-                <div className="bg-primary"></div>
+                {/* Pie Charts Legend */}
+                <div className="bg-primary">
+                  <Legends />
+                </div>
                 <div className="bg-secondary">
                   <PieChart title="Daily" />
-                  <h6
-                    className="text-center"
-                    style={{ fontSize: "14px", fontWeight: "bold" }}
-                  >
+                  <h6 className="text-center" style={{ fontSize: "14px" }}>
                     Daily
                   </h6>
                 </div>
@@ -86,27 +88,23 @@ function App() {
                 {/* Pie Chart 2 */}
                 <div className="bg-primary">
                   <PieChart title="Current Month Cumulative" />
-                  <h6
-                    className="text-center"
-                    style={{ fontSize: "14px", fontWeight: "bold" }}
-                  >
+                  <h6 className="text-center" style={{ fontSize: "14px" }}>
                     Current Month Cumulative
                   </h6>
                 </div>
                 {/* Pie Chart 3 */}
                 <div className="bg-light">
                   <PieChart title="Till Date Cumulative" />
-                  <h6
-                    className="text-center"
-                    style={{ fontSize: "14px", fontWeight: "bold" }}
-                  >
+                  <h6 className="text-center" style={{ fontSize: "14px" }}>
                     Till Date Cumulative
                   </h6>
                 </div>
               </div>
             </div>
             {/* React Flow Diagram */}
-            <div className="bg-success"></div>
+            <div className="bg-light">
+              <ReactFlowDiagram />
+            </div>
           </div>
         </div>
         {/* Sidebar Section */}

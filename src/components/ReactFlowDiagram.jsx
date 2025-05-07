@@ -16,55 +16,55 @@ const initialNodes = [
   {
     id: "solar_panel",
     type: "customNode",
-    position: { x: -100, y: -220 },
+    position: { x: 0, y: -180 },
     data: { label: "Solar Panel", img_src: "/images/solar.png" },
   },
   {
     id: "generator",
     type: "customNode",
-    position: { x: -100, y: 0 },
-    data: { label: "Generator", img_src: "/images/generator1.png" },
+    position: { x: 0, y: 0 },
+    data: { label: "Generator", img_src: "/images/generator.png" },
   },
   {
     id: "pdb",
     type: "customNode",
-    position: { x: -100, y: 220 },
-    data: { label: "PDB", img_src: "/images/pdb.png" },
+    position: { x: 0, y: 180 },
+    data: { label: "PDB", img_src: "/images/grid.png" },
   },
   {
     id: "eldc",
     type: "customNode",
-    position: { x: 250, y: 0 },
+    position: { x: 350, y: -45 },
     data: { label: "ELDC", img_src: "/images/eldc.png" },
   },
   {
     id: "home",
     type: "customNode",
-    position: { x: 520, y: 0 },
+    position: { x: 580, y: 0 },
     data: { label: "Home", img_src: "/images/home.png" },
   },
   {
     id: "solar_title",
     type: "titleNode",
-    position: { x: -210, y: 0 },
+    position: { x: 180, y: -190 },
     data: { label: "Solar Panel" },
   },
   {
     id: "generator_title",
     type: "titleNode",
-    position: { x: -210, y: 120 },
+    position: { x: 180, y: -10 },
     data: { label: "Generator" },
   },
   {
     id: "home_title",
     type: "titleNode",
-    position: { x: 760, y: 0 },
+    position: { x: 580, y: -90 },
     data: { label: "Home" },
   },
   {
     id: "pdb_title",
     type: "titleNode",
-    position: { x: 760, y: 120 },
+    position: { x: 180, y: 175 },
     data: { label: "PDB" },
   },
 ];
@@ -139,22 +139,24 @@ export default function ReactFlowDiagram() {
     [setEdges]
   );
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      // edgeTypes={edgeTypes}
-      nodeTypes={nodeTypes}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      fitView
-      attributionPosition="bottom-left"
-      zoomOnScroll={false}
-      panOnScroll={false}
-      preventScrolling={false}
-      nodesDraggable={true}
-      defaultViewport={defaultViewport}
-      className="reactflow-instance"
-    />
+    <div className="py-2 px-4 h-100 w-100">
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        // edgeTypes={edgeTypes}
+        nodeTypes={nodeTypes}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        fitView
+        attributionPosition="bottom-left"
+        zoomOnScroll={false}
+        panOnScroll={false}
+        preventScrolling={false}
+        nodesDraggable={true}
+        defaultViewport={defaultViewport}
+        className="reactflow-instance"
+      />
+    </div>
   );
 }

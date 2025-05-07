@@ -18,17 +18,23 @@ export default function CustomNode({ data, id }) {
             height={200}
           />
         </div>
+        <div
+          className="text-center"
+          style={{ fontSize: "24px", fontWeight: "bold" }}
+        >
+          {data.label}
+        </div>
         <Handle
           type="target"
           position={Position.Left}
           id="eldc_left_target_1"
-          style={{ top: "25%" }}
+          style={{ top: "51%" }}
         />
         <Handle
           type="target"
           position={Position.Left}
           id="eldc_left_target_2"
-          style={{ top: "50%" }}
+          style={{ top: "63%" }}
         />
         <Handle
           type="target"
@@ -40,16 +46,19 @@ export default function CustomNode({ data, id }) {
           type="source"
           position={Position.Right}
           id="eldc_right_source"
-          style={{ top: "50%" }}
+          style={{ top: "63%" }}
         />
       </div>
     );
   }
 
   return (
-    <div style={styles.nodeContainer}>
+    <div style={{ ...styles.nodeContainer }} className="bg-secondary">
       {data?.img_src && (
-        <div style={styles.imageWrapper}>
+        <div
+          style={styles.imageWrapper}
+          className={`${id === "home" && "justify-content-start"}`}
+        >
           <img
             src={data.img_src || null}
             alt={`${data.label}_image`}
@@ -57,7 +66,30 @@ export default function CustomNode({ data, id }) {
           />
         </div>
       )}
-      <div style={styles.label}>{data.label}</div>
+      <div
+        style={styles.label}
+        className={`${id === "home" && "justify-content-start ps-4"}`}
+      >
+        {data.label}
+      </div>
+      {/* <div
+        style={{
+          width: "150px",
+          height: "150px",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={data.img_src || null}
+          alt={`${data.label}_image`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
+      </div> */}
+
       <Handle
         type={type}
         position={position}
@@ -70,13 +102,15 @@ export default function CustomNode({ data, id }) {
 const styles = {
   eldcContainer: {
     width: "140px",
-    height: "100px",
+    height: "180px",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "6px",
     marginTop: "4px",
     marginLeft: "4px",
+    backgroundColor: "gray",
   },
   eldcImageWrapper: {
     position: "relative",
@@ -91,31 +125,32 @@ const styles = {
     border: "1px solid #6b7280",
     borderRadius: "4px",
     width: "160px",
-    height: "120px",
+    height: "140px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "8px",
+    // padding: "8px",
   },
   imageWrapper: {
     position: "relative",
     width: "100%",
-    height: "70%",
+    height: "80%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "end",
   },
   image: {
     maxWidth: "100%",
     maxHeight: "100%",
-    objectFit: "contain",
+    objectFit: "cover",
   },
   label: {
     width: "100%",
-    textAlign: "center",
+    display: "flex",
+    justifyContent: "end",
+    alignItems: "center",
     fontWeight: "600",
-    fontSize: "12px",
-    marginTop: "4px",
+    fontSize: "24px",
   },
 };
