@@ -1,3 +1,7 @@
+import AreaChart from "./components/AreaChart";
+import BarChart from "./components/BarChart";
+import PieChart from "./components/PieChart";
+
 function App() {
   return (
     <main
@@ -61,7 +65,15 @@ function App() {
                 }}
               >
                 <div className="bg-primary"></div>
-                <div className="bg-secondary"></div>
+                <div className="bg-secondary">
+                  <PieChart title="Daily" />
+                  <h6
+                    className="text-center"
+                    style={{ fontSize: "14px", fontWeight: "bold" }}
+                  >
+                    Daily
+                  </h6>
+                </div>
               </div>
               {/* Pie Charts Row 2 */}
               <div
@@ -71,8 +83,26 @@ function App() {
                   gap: "3px",
                 }}
               >
-                <div className="bg-primary"></div>
-                <div className="bg-light"></div>
+                {/* Pie Chart 2 */}
+                <div className="bg-primary">
+                  <PieChart title="Current Month Cumulative" />
+                  <h6
+                    className="text-center"
+                    style={{ fontSize: "14px", fontWeight: "bold" }}
+                  >
+                    Current Month Cumulative
+                  </h6>
+                </div>
+                {/* Pie Chart 3 */}
+                <div className="bg-light">
+                  <PieChart title="Till Date Cumulative" />
+                  <h6
+                    className="text-center"
+                    style={{ fontSize: "14px", fontWeight: "bold" }}
+                  >
+                    Till Date Cumulative
+                  </h6>
+                </div>
               </div>
             </div>
             {/* React Flow Diagram */}
@@ -127,7 +157,10 @@ function App() {
           >
             Solar Generation Curve
           </div>
-          <div className="bg-light"></div>
+          {/* Bar Chart */}
+          <div className="bg-light">
+            <BarChart />
+          </div>
         </div>
         {/* Area Chart */}
         <div
@@ -147,7 +180,10 @@ function App() {
           >
             Day Load Curve
           </div>
-          <div className="bg-danger"></div>
+          {/* Area Chart */}
+          <div className="bg-danger">
+            <AreaChart />
+          </div>
         </div>
       </div>
     </main>
