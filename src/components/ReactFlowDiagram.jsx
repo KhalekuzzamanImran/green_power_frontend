@@ -46,13 +46,13 @@ const initialNodes = [
   {
     id: "solar_title",
     type: "titleNode",
-    position: { x: 180, y: -190 },
+    position: { x: 170, y: -190 },
     data: { label: "Solar Panel" },
   },
   {
     id: "generator_title",
     type: "titleNode",
-    position: { x: 180, y: -10 },
+    position: { x: 170, y: -10 },
     data: { label: "Generator" },
   },
   {
@@ -64,7 +64,7 @@ const initialNodes = [
   {
     id: "pdb_title",
     type: "titleNode",
-    position: { x: 180, y: 175 },
+    position: { x: 170, y: 175 },
     data: { label: "PDB" },
   },
 ];

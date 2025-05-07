@@ -82,7 +82,10 @@ function App() {
                 </div>
                 <div className="bg-secondary">
                   <PieChart title="Daily" />
-                  <h6 className="text-center" style={{ fontSize: "14px" }}>
+                  <h6
+                    className="text-center fw-semibold"
+                    style={{ fontSize: "14px" }}
+                  >
                     Daily
                   </h6>
                 </div>
@@ -98,13 +101,16 @@ function App() {
                 {/* Pie Chart 2 */}
                 <div className="bg-primary">
                   <PieChart title="Current Month Cumulative" />
-                  <h6 className="text-center" style={{ fontSize: "14px" }}>
+                  <h6
+                    className="text-center fw-semibold"
+                    style={{ fontSize: "14px" }}
+                  >
                     Current Month Cumulative
                   </h6>
                 </div>
                 {/* Pie Chart 3 */}
                 <div className="bg-light">
-                  <PieChart title="Till Date Cumulative" />
+                  <PieChart title="Till Date Cumulative fw-semibold" />
                   <h6 className="text-center" style={{ fontSize: "14px" }}>
                     Till Date Cumulative
                   </h6>

@@ -19,8 +19,8 @@ export default function CustomNode({ data, id }) {
           />
         </div>
         <div
-          className="text-center"
-          style={{ fontSize: "24px", fontWeight: "bold" }}
+          className="text-center mt-2 fw-semibold"
+          style={{ fontSize: "24px" }}
         >
           {data.label}
         </div>
@@ -68,7 +68,9 @@ export default function CustomNode({ data, id }) {
       )}
       <div
         style={styles.label}
-        className={`${id === "home" && "justify-content-start ps-4"}`}
+        className={`${
+          id === "home" && "justify-content-start ps-4"
+        } fw-semibold`}
       >
         {data.label}
       </div>
@@ -150,7 +152,6 @@ const styles = {
     display: "flex",
     justifyContent: "end",
     alignItems: "center",
-    fontWeight: "600",
     fontSize: "24px",
   },
 };
