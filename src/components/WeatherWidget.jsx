@@ -38,10 +38,10 @@ export default function WeatherWidget() {
         border: "2px solid #507680",
         borderRadius: "5px",
         color: "#0d355c",
-        padding: "2px 10px",
+        padding: "5px 10px",
       }}
     >
-      <div className="d-flex justify-content-between gap-2 mt-1 mb-1">
+      <div className="d-flex justify-content-between gap-2">
         <h4 className="m-0">{`${weatherData?.main?.temp?.toFixed(1)} °C`}</h4>
         <img
           src={weatherIcon}
@@ -51,11 +51,12 @@ export default function WeatherWidget() {
           style={{ marginRight: "10px" }}
         />
       </div>
-      <p className="m-0 p-0" style={{ fontSize: "13px" }}>
+      <p className="m-0 p-0" style={{ fontSize: "14px" }}>
         Dhaka, Bangladesh
       </p>
-      <p className="m-0 p-0" style={{ fontSize: "13px" }}>
-        Wind: {windSpeedKmh} km/h ({windDirection}°)
+      <p className="m-0 p-0" style={{ fontSize: "14px" }}>
+        Wind: <span className="fw-semibold">{windSpeedKmh}</span> km/h (
+        <span className="fw-semibold">{windDirection}°</span>)
       </p>
     </div>
   );

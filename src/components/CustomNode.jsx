@@ -28,25 +28,25 @@ export default function CustomNode({ data, id }) {
           type="target"
           position={Position.Left}
           id="eldc_left_target_1"
-          style={{ top: "51%" }}
+          style={{ top: "45%" }}
         />
         <Handle
           type="target"
           position={Position.Left}
           id="eldc_left_target_2"
-          style={{ top: "63%" }}
+          style={{ top: "57.5%" }}
         />
         <Handle
           type="target"
           position={Position.Left}
           id="eldc_left_target_3"
-          style={{ top: "75%" }}
+          style={{ top: "70%" }}
         />
         <Handle
           type="source"
           position={Position.Right}
           id="eldc_right_source"
-          style={{ top: "63%" }}
+          style={{ top: "57.5%" }}
         />
       </div>
     );

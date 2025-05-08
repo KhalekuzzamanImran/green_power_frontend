@@ -34,13 +34,13 @@ const initialNodes = [
   {
     id: "eldc",
     type: "customNode",
-    position: { x: 350, y: -45 },
+    position: { x: 450, y: -35 },
     data: { label: "ELDC", img_src: "/images/eldc.png" },
   },
   {
     id: "home",
     type: "customNode",
-    position: { x: 580, y: 0 },
+    position: { x: 700, y: 0 },
     data: { label: "Home", img_src: "/images/home.png" },
   },
   {
@@ -58,7 +58,7 @@ const initialNodes = [
   {
     id: "home_title",
     type: "titleNode",
-    position: { x: 580, y: -90 },
+    position: { x: 700, y: -90 },
     data: { label: "Home" },
   },
   {

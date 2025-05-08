@@ -17,6 +17,7 @@ function LifeEnergyEquivalents({ iconName, title, value }) {
       <div
         style={{
           backgroundColor: "rgba(28, 103, 72, 1)",
+          boxShadow: "4px 0 6px -1px rgba(0,0,0,0.25)",
         }}
         className="d-flex flex-column justify-content-center align-items-center text-light"
       >

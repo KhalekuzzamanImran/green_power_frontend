@@ -35,16 +35,15 @@ function App() {
           <WeatherWidget />
           <StatusCard title={`Solar Irradiation`} />
           <StatusCard title={`Location`} />
-          <StatusCard title={`Projects Highlights`} />
+          <StatusCard title={`Project Highlights`} />
         </div>
         {/* Logo Section */}
         <div className=" d-flex justify-content-center align-items-center">
           <img
             src="/images/logo.png"
             alt="Green Power"
-            width={"100%"}
             style={{
-              width: "200px",
+              width: "100%",
               height: "70px",
               objectFit: "contain",
             }}
@@ -191,6 +190,7 @@ function App() {
           style={{
             gridTemplateRows: "1fr 12fr",
             gap: "2px",
+            boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1)",
           }}
         >
           {/* Sidebar Heading */}
@@ -252,7 +252,7 @@ function App() {
                   </>
                 }
                 value={`114.91`}
-                icon={`liveGeneration`}
+                icon={`taka`}
               />
             </div>
 
@@ -269,6 +269,7 @@ function App() {
                 // backgroundColor: "#007a92",
                 letterSpacing: "2px",
                 marginTop: "5px",
+                textShadow: "1px 1px 4px rgba(0,0,0,0.4)",
               }}
             >
               Air Quality Index
@@ -380,6 +381,7 @@ function App() {
                 // backgroundColor: "#007a92",
                 letterSpacing: "2px",
                 marginTop: "5px",
+                textShadow: "1px 1px 4px rgba(0,0,0,0.4)",
               }}
             >
               Life Energy Equivalents

@@ -3,7 +3,13 @@ import React from "react";
 
 export default function InfoCard({ title, value, icon, flag = null }) {
   const iconMap = {
-    liveGeneration: <Zap size={16} style={{ color: "white" }} />,
+    liveGeneration: (
+      <Zap
+        size={16}
+        strokeWidth={2.5}
+        style={{ color: "white", marginBottom: "3px" }}
+      />
+    ),
     cumulativeGeneration: (
       <div className="d-flex align-items-center justify-content-center">
         <Sigma
@@ -14,12 +20,24 @@ export default function InfoCard({ title, value, icon, flag = null }) {
         <Zap size={12} style={{ color: "white", marginLeft: "-4px" }} />
       </div>
     ),
+    taka: (
+      <div
+        style={{
+          color: "white",
+          fontWeight: "bold",
+          padding: "0px 4px",
+        }}
+      >
+        ৳
+      </div>
+    ),
   };
   return (
     <div
       className="d-grid"
       style={{
         gridTemplateRows: "1fr 1fr",
+        boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
       }}
     >
       <div
@@ -28,11 +46,12 @@ export default function InfoCard({ title, value, icon, flag = null }) {
       >
         <div
           style={{
-            fontSize: "11px",
-            fontWeight: "bold",
+            fontSize: "14px",
+            fontWeight: "400",
             color: "white",
-            lineHeight: "12px",
+            lineHeight: "13px",
             padding: "2px 4px",
+            letterSpacing: "1px",
           }}
         >
           {title}
@@ -41,9 +60,8 @@ export default function InfoCard({ title, value, icon, flag = null }) {
           className=""
           style={{
             backgroundColor: "rgba(0, 236, 157, 1)",
-            padding: "0px 3px",
+            padding: "1px 4px",
             borderRadius: "5px",
-            textAlign: "center",
           }}
         >
           {iconMap[icon] !== undefined ? iconMap[icon] : icon}
