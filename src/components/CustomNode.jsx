@@ -57,7 +57,9 @@ export default function CustomNode({ data, id }) {
       {data?.img_src && (
         <div
           style={styles.imageWrapper}
-          className={`${id === "home" && "justify-content-start"}`}
+          className={`${id === "home" && "justify-content-start"}  ${
+            id === "generator" ? "pt-4" : id === "pdb" && "pb-3 pe-2"
+          }`}
         >
           <img
             src={data.img_src || null}
@@ -70,7 +72,7 @@ export default function CustomNode({ data, id }) {
         style={styles.label}
         className={`${
           id === "home" && "justify-content-start ps-4"
-        } fw-semibold`}
+        } fw-semibold ${id === "pdb" && "pe-3"}`}
       >
         {data.label}
       </div>

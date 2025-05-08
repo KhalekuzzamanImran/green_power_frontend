@@ -1,9 +1,10 @@
 import React from "react";
+import GoogleMapComponent from "./GoogleMapComponent";
 
 export default function StatusCard({ title }) {
   let content = "";
   if (title === "Location") {
-    content = "";
+    content = <GoogleMapComponent />;
   } else if (title === "Project Highlights") {
     content = (
       <div
@@ -58,7 +59,15 @@ export default function StatusCard({ title }) {
         gridTemplateRows: "1.5fr 3.5fr",
       }}
     >
-      <div className="text-center fw-semibold" style={{ fontSize: "14px" }}>
+      <div
+        className="text-center fw-semibold"
+        style={{
+          fontSize: "14px",
+          letterSpacing: "1px",
+          textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
+          textDecoration: "underline",
+        }}
+      >
         {title}
       </div>
       {content}
