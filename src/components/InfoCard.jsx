@@ -17,7 +17,7 @@ export default function InfoCard({ title, value, icon, flag = null }) {
   };
   return (
     <div
-      className="bg-danger d-grid"
+      className="d-grid"
       style={{
         gridTemplateRows: "1fr 1fr",
       }}
@@ -50,9 +50,11 @@ export default function InfoCard({ title, value, icon, flag = null }) {
         </div>
       </div>
       <div
-        style={{
-          backgroundColor: "rgba(94, 221, 156, 1)",
-        }}
+        style={
+          {
+            // backgroundColor: "rgba(94, 221, 156, 1)",
+          }
+        }
         className="d-flex justify-content-center align-items-center"
       >
         <span className="me-1 fw-bold">{value}</span>

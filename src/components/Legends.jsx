@@ -7,8 +7,8 @@ export default function Legends() {
   return (
     <div>
       <div
-        style={{ fontSize: "12px", color: "white" }}
-        className="bg-warning p-2 pt-3 mt-4"
+        style={{ fontSize: "12px", color: "black" }}
+        className="p-2 pt-3 mt-4"
       >
         {labels.map((label, i) => (
           <div

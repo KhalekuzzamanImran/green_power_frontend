@@ -9,7 +9,7 @@ export default function StatusCard({ title }) {
     <div
       style={{
         width: "20%",
-        height: "85%",
+        height: "95%",
         backgroundColor: "#e3f1f4",
         border: "2px solid #507680",
         borderRadius: "5px",

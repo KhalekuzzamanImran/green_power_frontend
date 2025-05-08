@@ -53,7 +53,7 @@ export default function CustomNode({ data, id }) {
   }
 
   return (
-    <div style={{ ...styles.nodeContainer }} className="bg-secondary">
+    <div style={{ ...styles.nodeContainer }}>
       {data?.img_src && (
         <div
           style={styles.imageWrapper}
@@ -112,7 +112,6 @@ const styles = {
     borderRadius: "6px",
     marginTop: "4px",
     marginLeft: "4px",
-    backgroundColor: "gray",
   },
   eldcImageWrapper: {
     position: "relative",
@@ -124,7 +123,7 @@ const styles = {
   },
   nodeContainer: {
     position: "relative",
-    border: "1px solid #6b7280",
+    // border: "1px solid #6b7280",
     borderRadius: "4px",
     width: "160px",
     height: "140px",

@@ -12,7 +12,7 @@ import WebClock from "./components/WebClock";
 function App() {
   return (
     <main
-      className="bg-secondary container-fluid d-grid"
+      className="container-fluid d-grid"
       style={{
         height: "100vh",
         gridTemplateRows: ".75fr 3.25fr 1.5fr",
@@ -21,24 +21,24 @@ function App() {
     >
       {/* Header Section */}
       <div
-        className="bg-primary d-grid"
+        className=" d-grid"
         style={{
           gridTemplateColumns: "2fr 6fr 2fr",
           gap: "10px",
         }}
       >
         {/* Web Clock */}
-        <div className="bg-light">
+        <div className="">
           <WebClock />
         </div>
-        <div className="bg-warning d-flex justify-content-center align-items-center gap-2">
+        <div className=" d-flex justify-content-center align-items-center gap-2">
           <WeatherWidget />
           <StatusCard title={`Solar Irradiation`} />
           <StatusCard title={`Location`} />
           <StatusCard title={`Projects Highlights`} />
         </div>
         {/* Logo Section */}
-        <div className="bg-danger d-flex justify-content-center align-items-center">
+        <div className=" d-flex justify-content-center align-items-center">
           <img
             src="/images/logo.png"
             alt="Green Power"
@@ -53,7 +53,7 @@ function App() {
       </div>
       {/* Main Content Section */}
       <div
-        className="bg-danger d-grid"
+        className=" d-grid"
         style={{
           gridTemplateColumns: "9fr 4fr",
           gap: "7px",
@@ -61,10 +61,12 @@ function App() {
       >
         {/* Left Content(Main) */}
         <div
-          className="bg-primary d-grid"
+          className="d-grid"
           style={{
             gridTemplateRows: "1fr 12fr",
             gap: "2px",
+            // boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
+            boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)",
           }}
         >
           {/* Left Content Heading */}
@@ -80,43 +82,44 @@ function App() {
           </div>
           {/* Pie Chart and React Flow Container */}
           <div
-            className="bg-danger d-grid"
+            className=" d-grid"
             style={{
               gridTemplateColumns: "4.5fr 7.5fr",
             }}
           >
             {/* Pie Charts Container */}
             <div
-              className="bg-warning d-grid"
+              className=" d-grid"
               style={{
                 grieTemplateRows: "1fr 1fr",
                 gap: "3px",
+                boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
               }}
             >
               {/* Pie Charts Row 1 */}
               <div
-                className="bg-danger d-grid"
+                className=" d-grid"
                 style={{
                   gridTemplateColumns: "3fr 7fr",
                   gap: "3px",
                 }}
               >
                 {/* Pie Charts Legend */}
-                <div className="bg-primary">
+                <div className="">
                   <Legends />
                 </div>
                 {/* Pie Chart 1 */}
                 <div
-                  className="bg-primary d-grid"
+                  className=" d-grid"
                   style={{
                     gridTemplateRows: "4fr 1fr",
                     gap: "3px",
                   }}
                 >
-                  <div className="bg-danger d-flex justify-content-start align-items-end">
+                  <div className=" d-flex justify-content-start align-items-end">
                     <PieChart title="Daily" />
                   </div>
-                  <div className="bg-danger">
+                  <div className="">
                     <h6
                       className="text-start fw-semibold"
                       style={{ fontSize: "14px", marginLeft: "60px" }}
@@ -128,7 +131,7 @@ function App() {
               </div>
               {/* Pie Charts Row 2 */}
               <div
-                className="bg-danger d-grid"
+                className=" d-grid"
                 style={{
                   gridTemplateColumns: "1fr 1fr",
                   gap: "3px",
@@ -136,16 +139,16 @@ function App() {
               >
                 {/* Pie Chart 2 */}
                 <div
-                  className="bg-primary d-grid"
+                  className=" d-grid"
                   style={{
                     gridTemplateRows: "4fr 1fr",
                     gap: "3px",
                   }}
                 >
-                  <div className="bg-danger d-flex justify-content-center align-items-center">
+                  <div className=" d-flex justify-content-center align-items-center">
                     <PieChart title="Current Month Cumulative" />
                   </div>
-                  <div className="bg-danger">
+                  <div className="">
                     <h6
                       className="text-center fw-semibold"
                       style={{ fontSize: "14px" }}
@@ -156,16 +159,16 @@ function App() {
                 </div>
                 {/* Pie Chart 3 */}
                 <div
-                  className="bg-primary d-grid"
+                  className=" d-grid"
                   style={{
                     gridTemplateRows: "4fr 1fr",
                     gap: "3px",
                   }}
                 >
-                  <div className="bg-danger d-flex justify-content-center align-items-center">
+                  <div className=" d-flex justify-content-center align-items-center">
                     <PieChart title="Till Date Cumulative" />
                   </div>
-                  <div className="bg-danger">
+                  <div className=" ">
                     <h6
                       className="text-center fw-semibold"
                       style={{ fontSize: "14px" }}
@@ -177,14 +180,14 @@ function App() {
               </div>
             </div>
             {/* React Flow Diagram */}
-            <div className="bg-light">
+            <div className="">
               <ReactFlowDiagram />
             </div>
           </div>
         </div>
         {/* Sidebar Section */}
-        <div
-          className="bg-warning d-grid"
+        <divs
+          className="d-grid"
           style={{
             gridTemplateRows: "1fr 12fr",
             gap: "2px",
@@ -203,18 +206,19 @@ function App() {
           </div>
           {/* Sidebar Content */}
           <div
-            className="bg-success d-grid"
+            className=" d-grid"
             style={{
               gridTemplateRows: "4fr 2fr 4fr 2fr 13fr",
-              padding: "0px",
+              padding: "5px 15px 0px 15px",
             }}
           >
             {/* Supplimentary Info */}
             <div
-              className="bg-danger d-grid"
+              className=" d-grid"
               style={{
                 gridTemplateColumns: "1fr 1fr 1fr",
                 gap: "3px",
+                boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)",
               }}
             >
               <InfoCard
@@ -253,18 +257,29 @@ function App() {
             </div>
 
             {/* Air Quality heading */}
-            <div
-              className="bg-danger fw-bold d-flex justify-content-center align-items-end"
+            {/* <div
+              className=" fw-bold d-flex justify-content-center align-items-end"
               style={{ fontSize: "14px", paddingTop: "0px" }}
+            >
+              Air Quality Index
+            </div> */}
+            <div
+              className="#007a92 text-center  rounded text-dark fs-6 fw-bold"
+              style={{
+                // backgroundColor: "#007a92",
+                letterSpacing: "2px",
+                marginTop: "5px",
+              }}
             >
               Air Quality Index
             </div>
             {/* Air Quality Info */}
             <div
-              className="bg-primary d-grid"
+              className=" d-grid"
               style={{
                 gridTemplateColumns: "1fr 1fr 1fr 1fr",
                 gap: "3px",
+                boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)",
               }}
             >
               <InfoCard
@@ -352,15 +367,26 @@ function App() {
                 flag={`humidity`}
               />
             </div>
-            <div
-              className="bg-danger fw-bold d-flex justify-content-center align-items-end"
+            {/* Life Energy Equivalent Heading */}
+            {/* <div
+              className=" fw-bold d-flex justify-content-center align-items-end"
               style={{ fontSize: "14px", paddingTop: "0px" }}
+            >
+              Life Energy Equivalents
+            </div> */}
+            <div
+              className="#007a92 text-center fw-bold rounded text-dark fs-6"
+              style={{
+                // backgroundColor: "#007a92",
+                letterSpacing: "2px",
+                marginTop: "5px",
+              }}
             >
               Life Energy Equivalents
             </div>
             {/* Life Energy Equivalent */}
             <div
-              className="bg-warning d-grid"
+              className=" d-grid"
               style={{
                 gridTemplateRows: "1fr 1fr 1fr",
                 gap: "2px",
@@ -395,11 +421,11 @@ function App() {
               />
             </div>
           </div>
-        </div>
+        </divs>
       </div>
       {/* Footer Section */}
       <div
-        className="bg-warning d-grid"
+        className=" d-grid"
         style={{
           gridTemplateColumns: "1fr 1fr",
           gap: "7px",
@@ -407,9 +433,10 @@ function App() {
       >
         {/* Bar Chart */}
         <div
-          className="bg-danger d-grid"
+          className=" d-grid"
           style={{
             gridTemplateRows: "1fr 6fr",
+            boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
           }}
         >
           {/* Bar Chart Heading */}
@@ -424,13 +451,13 @@ function App() {
             Solar Generation Curve
           </div>
           {/* Bar Chart */}
-          <div className="bg-light">
+          <div className="">
             <BarChart />
           </div>
         </div>
         {/* Area Chart */}
         <div
-          className="bg-danger d-grid"
+          className=" d-grid"
           style={{
             gridTemplateRows: "1fr 6fr",
           }}
@@ -447,7 +474,7 @@ function App() {
             Day Load Curve
           </div>
           {/* Area Chart */}
-          <div className="bg-danger">
+          <div className="">
             <AreaChart />
           </div>
         </div>

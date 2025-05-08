@@ -31,7 +31,7 @@ export default function PieChart(props) {
 
   const sereis = [44, 55, 13];
   return (
-    <div className="bg-warning d-flex flex-column justify-content-center align-items-center">
+    <div className=" d-flex flex-column justify-content-center align-items-center">
       <Chart
         options={options}
         series={sereis}

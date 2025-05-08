@@ -33,16 +33,16 @@ export default function WeatherWidget() {
     <div
       style={{
         width: "170px",
-        height: "85%",
+        height: "95%",
         backgroundColor: "#e3f1f4",
         border: "2px solid #507680",
         borderRadius: "5px",
         color: "#0d355c",
-        padding: "0px 10px",
+        padding: "2px 10px",
       }}
     >
       <div className="d-flex justify-content-between gap-2 mt-1 mb-1">
-        <h3 className="m-0">{`${weatherData?.main?.temp?.toFixed(1)} °C`}</h3>
+        <h4 className="m-0">{`${weatherData?.main?.temp?.toFixed(1)} °C`}</h4>
         <img
           src={weatherIcon}
           alt={weatherCondition}

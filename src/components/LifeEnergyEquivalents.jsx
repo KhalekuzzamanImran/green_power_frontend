@@ -9,7 +9,7 @@ function LifeEnergyEquivalents({ iconName, title, value }) {
   };
   return (
     <div
-      className="bg-warning d-grid"
+      className=" d-grid"
       style={{
         gridTemplateColumns: "1fr 4fr",
       }}
@@ -25,7 +25,8 @@ function LifeEnergyEquivalents({ iconName, title, value }) {
       </div>
       <div
         style={{
-          backgroundColor: "rgba(95, 221, 157, 1)",
+          // backgroundColor: "rgba(95, 221, 157, 1)",
+          backgroundColor: "#e3f1f4",
           padding: "5px 10px",
           letterSpacing: "1px",
         }}
