@@ -5,14 +5,17 @@ import Legends from "./components/Legends";
 import LifeEnergyEquivalents from "./components/LifeEnergyEquivalents";
 import PieChart from "./components/PieChart";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
+import StatusCard from "./components/StatusCard";
+import WeatherWidget from "./components/WeatherWidget";
+import WebClock from "./components/WebClock";
 
 function App() {
   return (
     <main
-      className="bg-secondary container-xl d-grid"
+      className="bg-secondary container-fluid d-grid"
       style={{
         height: "100vh",
-        gridTemplateRows: "1fr 3fr 1.5fr",
+        gridTemplateRows: ".75fr 3.25fr 1.5fr",
         gap: "5px",
       }}
     >
@@ -24,15 +27,35 @@ function App() {
           gap: "10px",
         }}
       >
-        <div className="bg-light"></div>
-        <div className="bg-warning"></div>
-        <div className="bg-danger"></div>
+        {/* Web Clock */}
+        <div className="bg-light">
+          <WebClock />
+        </div>
+        <div className="bg-warning d-flex justify-content-center align-items-center gap-2">
+          <WeatherWidget />
+          <StatusCard title={`Solar Irradiation`} />
+          <StatusCard title={`Location`} />
+          <StatusCard title={`Projects Highlights`} />
+        </div>
+        {/* Logo Section */}
+        <div className="bg-danger d-flex justify-content-center align-items-center">
+          <img
+            src="/images/logo.png"
+            alt="Green Power"
+            width={"100%"}
+            style={{
+              width: "200px",
+              height: "70px",
+              objectFit: "contain",
+            }}
+          />
+        </div>
       </div>
       {/* Main Content Section */}
       <div
         className="bg-danger d-grid"
         style={{
-          gridTemplateColumns: "7fr 3fr",
+          gridTemplateColumns: "9fr 4fr",
           gap: "7px",
         }}
       >
@@ -59,7 +82,7 @@ function App() {
           <div
             className="bg-danger d-grid"
             style={{
-              gridTemplateColumns: "5fr 7fr",
+              gridTemplateColumns: "4.5fr 7.5fr",
             }}
           >
             {/* Pie Charts Container */}
@@ -82,14 +105,25 @@ function App() {
                 <div className="bg-primary">
                   <Legends />
                 </div>
-                <div className="bg-secondary">
-                  <PieChart title="Daily" />
-                  <h6
-                    className="text-center fw-semibold"
-                    style={{ fontSize: "14px" }}
-                  >
-                    Daily
-                  </h6>
+                {/* Pie Chart 1 */}
+                <div
+                  className="bg-primary d-grid"
+                  style={{
+                    gridTemplateRows: "4fr 1fr",
+                    gap: "3px",
+                  }}
+                >
+                  <div className="bg-danger d-flex justify-content-start align-items-end">
+                    <PieChart title="Daily" />
+                  </div>
+                  <div className="bg-danger">
+                    <h6
+                      className="text-start fw-semibold"
+                      style={{ fontSize: "14px", marginLeft: "60px" }}
+                    >
+                      Daily
+                    </h6>
+                  </div>
                 </div>
               </div>
               {/* Pie Charts Row 2 */}
@@ -101,21 +135,44 @@ function App() {
                 }}
               >
                 {/* Pie Chart 2 */}
-                <div className="bg-primary">
-                  <PieChart title="Current Month Cumulative" />
-                  <h6
-                    className="text-center fw-semibold"
-                    style={{ fontSize: "14px" }}
-                  >
-                    Current Month Cumulative
-                  </h6>
+                <div
+                  className="bg-primary d-grid"
+                  style={{
+                    gridTemplateRows: "4fr 1fr",
+                    gap: "3px",
+                  }}
+                >
+                  <div className="bg-danger d-flex justify-content-center align-items-center">
+                    <PieChart title="Current Month Cumulative" />
+                  </div>
+                  <div className="bg-danger">
+                    <h6
+                      className="text-center fw-semibold"
+                      style={{ fontSize: "14px" }}
+                    >
+                      Current Month Cumulative
+                    </h6>
+                  </div>
                 </div>
                 {/* Pie Chart 3 */}
-                <div className="bg-light">
-                  <PieChart title="Till Date Cumulative fw-semibold" />
-                  <h6 className="text-center" style={{ fontSize: "14px" }}>
-                    Till Date Cumulative
-                  </h6>
+                <div
+                  className="bg-primary d-grid"
+                  style={{
+                    gridTemplateRows: "4fr 1fr",
+                    gap: "3px",
+                  }}
+                >
+                  <div className="bg-danger d-flex justify-content-center align-items-center">
+                    <PieChart title="Till Date Cumulative" />
+                  </div>
+                  <div className="bg-danger">
+                    <h6
+                      className="text-center fw-semibold"
+                      style={{ fontSize: "14px" }}
+                    >
+                      Till Date Cumulative
+                    </h6>
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,7 +206,7 @@ function App() {
             className="bg-success d-grid"
             style={{
               gridTemplateRows: "4fr 2fr 4fr 2fr 13fr",
-              padding: "5px 20px 0px",
+              padding: "0px",
             }}
           >
             {/* Supplimentary Info */}

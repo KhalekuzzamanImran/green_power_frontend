@@ -3,11 +3,11 @@ import React from "react";
 
 export default function InfoCard({ title, value, icon, flag = null }) {
   const iconMap = {
-    liveGeneration: <Zap size={18} style={{ color: "white" }} />,
+    liveGeneration: <Zap size={16} style={{ color: "white" }} />,
     cumulativeGeneration: (
       <div className="d-flex align-items-center justify-content-center">
         <Sigma
-          size={18}
+          size={16}
           strokeWidth={2.5}
           style={{ color: "white", margin: "3px 0px" }}
         />
@@ -32,6 +32,7 @@ export default function InfoCard({ title, value, icon, flag = null }) {
             fontWeight: "bold",
             color: "white",
             lineHeight: "12px",
+            padding: "2px 4px",
           }}
         >
           {title}
