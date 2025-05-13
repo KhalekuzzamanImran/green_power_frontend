@@ -36,7 +36,7 @@ const AreaChart = () => {
     //   text: "Monthly Energy Consumption",
     //   align: "center",
     // },
-    colors: ["#00BFFF"],
+    colors: ["darkgreen"],
   };
 
   const series = [
@@ -66,7 +66,7 @@ const AreaChart = () => {
           <Chart
             options={options}
             series={series}
-            type="area"
+            type="line"
             height="100%"
             width="100%"
           />

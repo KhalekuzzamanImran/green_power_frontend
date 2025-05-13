@@ -26,8 +26,8 @@ function LifeEnergyEquivalents({ iconName, title, value }) {
       </div>
       <div
         style={{
-          // backgroundColor: "rgba(95, 221, 157, 1)",
-          backgroundColor: "#e3f1f4",
+          backgroundColor: "rgba(95, 221, 157, 1)",
+          // backgroundColor: "#e3f1f4",
           padding: "5px 10px",
           letterSpacing: "1px",
         }}

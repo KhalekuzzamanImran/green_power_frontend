@@ -21,14 +21,15 @@ function App() {
     >
       {/* Header Section */}
       <div
-        className=" d-grid"
+        className="d-grid border border-2 border-secondary rounded"
         style={{
           gridTemplateColumns: "2fr 6fr 2fr",
           gap: "10px",
+          backgroundColor: "rgb(209 255 226)",
         }}
       >
         {/* Web Clock */}
-        <div className="">
+        <div className="d-flex justify-content-end align-items-center">
           <WebClock />
         </div>
         <div className=" d-flex justify-content-center align-items-center gap-2">
@@ -52,7 +53,7 @@ function App() {
       </div>
       {/* Main Content Section */}
       <div
-        className=" d-grid"
+        className="d-grid"
         style={{
           gridTemplateColumns: "9fr 4fr",
           gap: "7px",
@@ -60,12 +61,13 @@ function App() {
       >
         {/* Left Content(Main) */}
         <div
-          className="d-grid"
+          className="d-grid border border-2 border-secondary rounded"
           style={{
             gridTemplateRows: "1fr 12fr",
             gap: "2px",
             // boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
             boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)",
+            backgroundColor: "rgba(209, 248, 253, 1)",
           }}
         >
           {/* Left Content Heading */}
@@ -186,11 +188,12 @@ function App() {
         </div>
         {/* Sidebar Section */}
         <divs
-          className="d-grid"
+          className="d-grid border border-2 border-secondary rounded"
           style={{
             gridTemplateRows: "1fr 12fr",
             gap: "2px",
             boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1)",
+            backgroundColor: "rgba(209, 248, 253, 1)",
           }}
         >
           {/* Sidebar Heading */}
@@ -435,17 +438,18 @@ function App() {
       >
         {/* Bar Chart */}
         <div
-          className=" d-grid"
+          className="d-grid  border border-2 border-secondary rounded"
           style={{
             gridTemplateRows: "1fr 6fr",
             boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
+            backgroundColor: "#d1ffe2",
           }}
         >
           {/* Bar Chart Heading */}
           <div
             className="#007a92 text-center border border-2 rounded text-light fs-6"
             style={{
-              backgroundColor: "#007a92",
+              backgroundColor: "#1a9167",
               letterSpacing: "2px",
               padding: "2px 0px",
             }}
@@ -459,16 +463,17 @@ function App() {
         </div>
         {/* Area Chart */}
         <div
-          className=" d-grid"
+          className="d-grid border border-2 border-secondary rounded"
           style={{
             gridTemplateRows: "1fr 6fr",
+            backgroundColor: "#d1ffe2",
           }}
         >
           {/* Area Chart Heading */}
           <div
             className="#007a92 text-center border border-2 rounded text-light fs-6"
             style={{
-              backgroundColor: "#007a92",
+              backgroundColor: "#1a9167",
               letterSpacing: "2px",
               padding: "2px 0px",
             }}

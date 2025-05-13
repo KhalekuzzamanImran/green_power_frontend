@@ -123,12 +123,12 @@ export default function WebClock() {
 
 const styles = {
   container: {
-    width: "100%",
+    width: "75%",
     height: "90%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "start",
     // backgroundColor: "white",
   },
   error: {

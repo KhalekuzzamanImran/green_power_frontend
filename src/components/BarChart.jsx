@@ -37,7 +37,7 @@ const BarChart = () => {
       text: "",
       align: "center",
     },
-    colors: ["#00E396"],
+    colors: ["#1d9066"],
   };
 
   const series = [

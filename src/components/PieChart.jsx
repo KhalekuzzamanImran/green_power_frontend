@@ -8,7 +8,7 @@ export default function PieChart(props) {
     },
 
     labels: ["Solar", "Grid", "Generator"],
-    colors: ["#008FFB", "#00E396", "#FF4560"],
+    colors: ["#1C6748", "#92F9E6", "#5FDD9D"],
 
     legend: {
       show: false,
