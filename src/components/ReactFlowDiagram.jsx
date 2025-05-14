@@ -42,37 +42,37 @@ const initialNodes = [
   {
     id: "eldc",
     type: "customNode",
-    position: { x: 450, y: -35 },
+    position: { x: 500, y: -35 },
     data: { label: "ELDC", img_src: "/images/eldc.png" },
   },
   {
     id: "home",
     type: "customNode",
-    position: { x: 700, y: 0 },
+    position: { x: 750, y: 0 },
     data: { label: "Home", img_src: "/images/home.png" },
   },
   {
     id: "solar_title",
     type: "titleNode",
-    position: { x: 170, y: -190 },
+    position: { x: 190, y: -195 },
     data: { label: "Solar Panel" },
   },
   {
     id: "generator_title",
     type: "titleNode",
-    position: { x: 170, y: -10 },
+    position: { x: 190, y: -15 },
     data: { label: "Generator" },
   },
   {
     id: "home_title",
     type: "titleNode",
-    position: { x: 700, y: -90 },
+    position: { x: 760, y: -100 },
     data: { label: "Home" },
   },
   {
     id: "pdb_title",
     type: "titleNode",
-    position: { x: 170, y: 175 },
+    position: { x: 190, y: 165 },
     data: { label: "PDB" },
   },
 ];

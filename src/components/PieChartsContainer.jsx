@@ -21,6 +21,7 @@ function PieChartsContainer({ data }) {
         }}
       >
         <div className="">
+          <Legends />
           {/* <TemporaryChart chartTitle="Daily" data={data?.[0].data} /> */}
         </div>
         <div

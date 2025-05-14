@@ -191,7 +191,7 @@ function App() {
       className="container-fluid d-grid"
       style={{
         height: "100vh",
-        gridTemplateRows: ".75fr 3.25fr 1.5fr",
+        gridTemplateRows: "1.5fr 6fr .5fr",
         gap: "5px",
       }}
     >
@@ -247,7 +247,7 @@ function App() {
         />
       </div>
       {/* Footer Section */}
-      <Footer solarData={solarData}/>
+      <Footer solarData={solarData} />
     </main>
   );
 }

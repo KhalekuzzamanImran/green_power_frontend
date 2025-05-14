@@ -48,7 +48,7 @@ function Sidebar({ environmentData, solarData, yearlySolarData }) {
                 Generation
               </>
             }
-            value={todayLiveGeneration?.toFixed(2) || 0}
+            value={Number(todayLiveGeneration?.toFixed(2)) || 0}
             icon={`liveGeneration`}
           />
           <InfoCard

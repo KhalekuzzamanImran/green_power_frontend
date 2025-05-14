@@ -1,82 +1,103 @@
-import React from "react";
 import Chart from "react-apexcharts";
 
-const BarChart = () => {
-  const options = {
-    chart: {
-      type: "bar",
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "55%",
-        endingShape: "rounded",
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    xaxis: {
-      categories: [
-        "6:00",
-        "7:00",
-        "8:00",
-        "9:00",
-        "10:00",
-        "11:00",
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00",
-        "17:00",
-        "18:00",
-      ],
-    },
-    title: {
-      text: "",
-      align: "center",
-    },
-    colors: ["#1d9066"],
+const BarChart = ({ data = [] }) => {
+  const hourlyDiffMap = new Map();
+
+  data?.forEach(([timestamp, value]) => {
+    const date = new Date(timestamp);
+    if (isNaN(date)) return;
+
+    const hour = date.getUTCHours(); // Use UTC hour
+
+    if (!hourlyDiffMap.has(hour)) {
+      hourlyDiffMap.set(hour, { first: value, last: value });
+    } else {
+      const entry = hourlyDiffMap.get(hour);
+      entry.last = value;
+      hourlyDiffMap.set(hour, entry);
+    }
+  });
+
+  const sortedHours = [...hourlyDiffMap.keys()].sort((a, b) => a - b);
+  const differences = sortedHours.map(
+    (hour) => hourlyDiffMap.get(hour).last - hourlyDiffMap.get(hour).first
+  );
+
+  // ✅ Correct AM/PM formatting for UTC hours
+  const formatHour = (hour) => {
+    const period = hour >= 12 ? "AM" : "PM";
+    const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+    return `${formattedHour} ${period}`;
+  };
+
+  const chartCategories = sortedHours.map(formatHour);
+
+  const formatEnergy = (val) => {
+    if (val < 1000) return `${val.toFixed(2)} Wh`;
+    return `${(val / 1000).toFixed(2)} kWh`;
   };
 
   const series = [
     {
-      name: "Sales",
-      data: [10, 20, 30, 40, 50, 60, 70, 60, 50, 40, 30, 20, 10],
+      name: "Energy Consumption",
+      data: differences,
     },
   ];
 
-  return (
-    <div className="col-12 h-100">
-      <div
-        className="d-flex justify-content-between align-items-center"
-        style={{ height: "85%" }}
-      >
-        <div
-          className="d-flex justify-content-center"
-          style={{
-            writingMode: "vertical-rl", // vertical from bottom to top
-            transform: "rotate(180deg)", // correct the upside-down text
-            textAlign: "center",
-          }}
-        >
-          Power [kW]
-        </div>
-        <div style={{ width: "100%" }}>
-          <Chart
-            options={options}
-            series={series}
-            type="bar"
-            height="100%"
-            width="100%"
-          />
-        </div>
-      </div>
+  const options = {
+    chart: {
+      id: "delta_energy_chart",
+      type: "bar",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        dynamicAnimation: { speed: 500 },
+      },
+      toolbar: { autoSelected: "zoom" },
+    },
+    xaxis: {
+      categories: chartCategories,
+      title: {
+        text: "Time of Day",
+        style: { fontSize: "13px", fontWeight: 600 },
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Power",
+        style: { fontSize: "13px", fontWeight: 600 },
+      },
+      labels: {
+        formatter: formatEnergy,
+        style: { fontSize: "12px" },
+      },
+    },
+    tooltip: {
+      x: {
+        formatter: (_, { dataPointIndex }) =>
+          `Hour: ${formatHour(sortedHours[dataPointIndex])}`,
+      },
+      y: {
+        formatter: formatEnergy,
+        title: { formatter: () => "Power" },
+      },
+    },
+    colors: ["#1a9167"],
+    dataLabels: { enabled: false },
+    fill: {
+      type: "solid",
+    },
+  };
 
-      <p className="text-center p-0 m-0 mb-2" style={{ height: "15%" }}>
-        Time of Day
-      </p>
+  return (
+    <div className="px-2 py-3">
+      <Chart
+        options={options}
+        series={series}
+        type="bar"
+        height="100%"
+        width="100%"
+      />
     </div>
   );
 };

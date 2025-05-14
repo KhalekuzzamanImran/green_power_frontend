@@ -67,33 +67,13 @@ const TitleNode = ({ id }) => {
 
   const { power, current } = getDisplayValues();
 
-  const powerStyle = {
-    fontSize: "1.5rem",
-    color: "#e11d48", // red-600
-    fontWeight: "500",
-  };
-
-  const unitStyle = {
-    fontSize: "1.125rem",
-    color: "#374151", // gray-900
-    fontWeight: "600",
-    marginLeft: "0.5rem", // ml-2
-  };
-
-  const containerStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    md: { justifyContent: "flex-start" },
-  };
-
   return (
     <div className=" d-flex flex-column justify-content-center align-items-start">
-      <div className="px-2 fs-4 fw-semibold">
+      <div className="px-2 fs-3 fw-semibold">
         <span className="me-2">{power}</span>
         <span className="fw-bold">kW</span>
       </div>
-      <div className="px-2 fs-4 fw-semibold">
+      <div className="px-2 fs-3 fw-semibold">
         <span className="me-2">{current}</span>
         <span className="fw-bold">A</span>
       </div>

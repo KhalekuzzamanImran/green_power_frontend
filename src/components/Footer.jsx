@@ -4,6 +4,10 @@ import BarChart from "./BarChart";
 import EnergyConsumtionChart from "./EnergyConsumptionChart";
 
 function Footer({ solarData }) {
+  const temp = solarData?.map((entry) => [
+    entry?.timestamp,
+    entry?.energy_consumption?.[0],
+  ]);
   return (
     <div
       className=" d-grid"
@@ -34,7 +38,7 @@ function Footer({ solarData }) {
         </div>
         {/* Bar Chart */}
         <div className="">
-          <BarChart />
+          <BarChart data={temp} />
         </div>
       </div>
       {/* Area Chart */}
@@ -58,12 +62,13 @@ function Footer({ solarData }) {
         </div>
         {/* Area Chart */}
         <div className="">
-          <EnergyConsumtionChart
+          {/* <EnergyConsumtionChart
             data={solarData?.map((entry) => [
               new Date(entry?.timestamp).getTime() + 6 * 60 * 60 * 1000, // Add 6 hours (in milliseconds)
               entry?.energy_consumption?.[0], // Extract the first energy consumption value
             ])}
-          />
+          /> */}
+          <AreaChart data={temp} />
         </div>
       </div>
     </div>
