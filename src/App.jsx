@@ -4,12 +4,170 @@ import Heading from "./components/Heading";
 import PieChartsContainer from "./components/PieChartsContainer";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
 import Sidebar from "./components/Sidebar";
+import useData from "./hooks/useData";
+import useEnyNowData from "./hooks/useEnyNowData";
 import useLatestData from "./hooks/useLatestData";
 
 function App() {
-  const { environmentData, gridData, solarData, loading, error } =
-    useLatestData();
-  console.log(environmentData, gridData, solarData);
+  const {
+    environmentData: environmentLatestData,
+    generatorData: generatorLatestData,
+    energyData: energyLatestData,
+    solarData: latestSolarData,
+    loading: latestLoading,
+    error: latestError,
+  } = useLatestData();
+
+  const { enyNowData, loading, error } = useEnyNowData({ timeRange: "TODAY" });
+  const { enyNowData: enyNowMonthlyData } = useEnyNowData({
+    timeRange: "LAST_30_DAYS",
+  });
+
+  const { enyNowData: enyNowYearlyData } = useEnyNowData({
+    timeRange: "THIS_YEAR",
+  });
+
+  const { generatorData, solarData } = useData({
+    timeRange: "TODAY",
+  });
+
+  const { generatorData: generatorMonthlyData, solarData: solarMonthlyData } =
+    useData({
+      timeRange: "LAST_30_DAYS",
+    });
+
+  const { generatorData: generatorYearlyData, solarData: solarYearlyData } =
+    useData({
+      timeRange: "THIS_YEAR",
+    });
+
+  // Grid Energy consumption
+  let filteredGridEnergyConsumption = enyNowData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const dailyEnergyData =
+    filteredGridEnergyConsumption?.length >= 2
+      ? (
+          filteredGridEnergyConsumption[
+            filteredGridEnergyConsumption.length - 1
+          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  filteredGridEnergyConsumption = enyNowMonthlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const monthlyEnergyData =
+    filteredGridEnergyConsumption?.length >= 2
+      ? (
+          filteredGridEnergyConsumption[
+            filteredGridEnergyConsumption.length - 1
+          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  filteredGridEnergyConsumption = enyNowYearlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const yearlyEnergyData =
+    filteredGridEnergyConsumption?.length >= 2
+      ? (
+          filteredGridEnergyConsumption[
+            filteredGridEnergyConsumption.length - 1
+          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  // Daily, Monthly, Yearly Generator Data
+  let filteredGeneratorEnergyConsumption = generatorData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const dailyGeneratorData =
+    filteredGeneratorEnergyConsumption?.length >= 2
+      ? (
+          filteredGeneratorEnergyConsumption[
+            filteredGeneratorEnergyConsumption.length - 1
+          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  filteredGeneratorEnergyConsumption = generatorMonthlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const monthlyGeneratorData =
+    filteredGeneratorEnergyConsumption?.length >= 2
+      ? (
+          filteredGeneratorEnergyConsumption[
+            filteredGeneratorEnergyConsumption.length - 1
+          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  filteredGeneratorEnergyConsumption = generatorYearlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+
+  const YearlyGeneratorData =
+    filteredGeneratorEnergyConsumption?.length >= 2
+      ? (
+          filteredGeneratorEnergyConsumption[
+            filteredGeneratorEnergyConsumption.length - 1
+          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
+        )?.toFixed(2)
+      : 0;
+
+  // Daily, Monthly, Yearly Solar Data
+  let filteredSolarEnergyConsumption = solarData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+  const dailySolarData =
+    filteredSolarEnergyConsumption?.length >= 2
+      ? (
+          filteredSolarEnergyConsumption[
+            filteredSolarEnergyConsumption.length - 1
+          ]?.energy_consumption?.[0] -
+          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
+        )?.toFixed(2)
+      : 0;
+
+  filteredSolarEnergyConsumption = solarMonthlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+  const monthlySolarData =
+    filteredSolarEnergyConsumption?.length >= 2
+      ? (
+          filteredSolarEnergyConsumption[
+            filteredSolarEnergyConsumption.length - 1
+          ]?.energy_consumption?.[0] -
+          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
+        )?.toFixed(2)
+      : 0;
+
+  filteredSolarEnergyConsumption = solarYearlyData?.filter((obj) =>
+    Object.values(obj).every((value) => value !== null && value !== undefined)
+  );
+  const yearlySolarData =
+    filteredSolarEnergyConsumption?.length >= 2
+      ? (
+          filteredSolarEnergyConsumption[
+            filteredSolarEnergyConsumption.length - 1
+          ]?.energy_consumption?.[0] -
+          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
+        )?.toFixed(2)
+      : 0;
+
+  const dailyTotal =
+    dailySolarData / 1000 + dailyGeneratorData + dailyEnergyData;
+  const monthlyTotal =
+    monthlySolarData / 1000 + monthlyGeneratorData + monthlyEnergyData;
+  const yearlyTotal =
+    yearlySolarData / 1000 + YearlyGeneratorData + yearlyEnergyData;
+
   return (
     <main
       className="container-fluid d-grid"
@@ -58,7 +216,11 @@ function App() {
           </div>
         </div>
         {/* Sidebar Section */}
-        <Sidebar />
+        <Sidebar 
+          environmentData={environmentLatestData}
+          solarData={solarData}
+          yearlySolarData={yearlySolarData}
+        />
       </div>
       {/* Footer Section */}
       <Footer />

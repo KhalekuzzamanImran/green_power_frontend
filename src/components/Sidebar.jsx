@@ -3,7 +3,8 @@ import LifeEnergyEquivalents from "./LifeEnergyEquivalents";
 import InfoCard from "./InfoCard";
 import Heading from "./Heading";
 
-function Sidebar() {
+function Sidebar({environmentData, solarData, yearlySolarData}) {
+  console.log(environmentData)
   return (
     <divs
       className="d-grid border border-2 border-secondary rounded"
@@ -41,7 +42,7 @@ function Sidebar() {
                 Generation
               </>
             }
-            value={`114.91`}
+            value={environmentData?.pm1_0_ug_m3 ?? 0}
             icon={`liveGeneration`}
           />
           <InfoCard

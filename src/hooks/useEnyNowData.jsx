@@ -1,10 +1,7 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const useLatestData = () => {
-  const [environmentData, setEnvironmentData] = useState({});
-  const [generatorData, setGeneratorData] = useState({});
-  const [energyData, setEnergyData] = useState({});
-  const [solarData, setSolarData] = useState([]);
+const useEnyNowData = ({ timeRange }) => {
+  const [enyNowData, setEnyNowData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
@@ -14,18 +11,7 @@ const useLatestData = () => {
   const email = import.meta.env.VITE_PUBLIC_EMAIL;
   const password = import.meta.env.VITE_PUBLIC_PASSWORD;
 
-  // Memoized endpoints to prevent re-creation
-  const endpoints = useMemo(
-    () => ({
-      environment: `${url}/pop/cccl-environment-latest-data/?device_code=GREEN_POWER_THERMOHYGROMETER&topic=CCCL/PURBACHAL/ENV_01&time_range=TODAY`,
-      generator: `${url}/pop/cccl-generator-latest-data/?device_code=GREEN_POWER_GENERATOR&topic=CCCL/PURBACHAL/ENM_01&time_range=TODAY`,
-      energy: `${url}/pop/cpm-latest-rt-data/?device_code=3071523B00003&topic=MQTT_RT_DATA&time_range=TODAY`,
-      solar: `${url}/pop/solar-readings`,
-    }),
-    [url]
-  );
-
-  // Function to fetch access and refresh token
+  // Function to fetch the access & refresh token
   const fetchAccessToken = useCallback(async () => {
     try {
       const response = await fetch(`${url}/accounts/token/`, {
@@ -48,7 +34,7 @@ const useLatestData = () => {
   // Function to refresh the access token
   const refreshAccessToken = useCallback(async () => {
     if (!refreshToken) {
-      await fetchAccessToken();
+      await fetchAccessToken(); // Get new tokens if refresh token is missing
       return;
     }
 
@@ -66,52 +52,44 @@ const useLatestData = () => {
     } catch (err) {
       console.error("Error refreshing access token:", err);
       setError(err.message || "Failed to refresh token");
-      await fetchAccessToken();
+      await fetchAccessToken(); // Fallback to getting a new access token
     }
   }, [url, refreshToken, fetchAccessToken]);
 
-  // Function to fetch latest data
+  // Function to fetch the EnyNow data
   const fetchData = useCallback(async () => {
     if (!token) return;
 
     try {
       setLoading(true);
+      setError(null);
 
-      const responses = await Promise.all(
-        Object.values(endpoints).map((endpoint) =>
-          fetch(endpoint, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-          })
-        )
+      const response = await fetch(
+        `${url}/pop/cpm-enynow-data/?device_code=3071523B00003&topic=MQTT_ENY_NOW&time_range=${timeRange}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
-      const failedResponse = responses.find((res) => !res.ok);
-      if (failedResponse) {
-        if (failedResponse.status === 401) {
-          console.warn("Access token expired, refreshing token...");
-          await refreshAccessToken();
-          return;
-        }
-        throw new Error(`Failed to fetch data: ${failedResponse.statusText}`);
+      if (response.status === 401) {
+        console.warn("Access token expired, refreshing token...");
+        await refreshAccessToken();
+        return;
       }
 
-      const [envData, genData, energyData, solarData] = await Promise.all(
-        responses.map((res) => res.json())
-      );
+      if (!response.ok)
+        throw new Error(`Failed to fetch data: ${response.statusText}`);
 
-      setEnvironmentData(envData?.data?.[0]?.latest || {});
-      setGeneratorData(genData?.data?.[0]?.latest || {});
-      setEnergyData(energyData?.data?.[0]?.latest || {});
-      setSolarData(solarData?.data?.[solarData?.data?.length - 1] || {});
-      setError(null);
+      const jsonData = await response.json();
+      setEnyNowData(jsonData?.data?.[0]?.data || []);
     } catch (err) {
-      console.error("Error fetching latest data:", err);
+      console.error("Error fetching EnyNow data:", err);
       setError(err.message || "An unknown error occurred");
     } finally {
       setLoading(false);
     }
-  }, [token, refreshAccessToken, endpoints]);
+  }, [token, timeRange, url, refreshAccessToken]);
 
   // Fetch token on mount
   useEffect(() => {
@@ -128,14 +106,7 @@ const useLatestData = () => {
     return () => clearInterval(interval);
   }, [fetchData, token]);
 
-  return {
-    environmentData,
-    generatorData,
-    energyData,
-    solarData,
-    loading,
-    error,
-  };
+  return { enyNowData, loading, error };
 };
 
-export default useLatestData;
+export default useEnyNowData;
