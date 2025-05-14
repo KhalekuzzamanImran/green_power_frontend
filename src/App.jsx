@@ -211,12 +211,18 @@ function App() {
             <PieChartsContainer />
             {/* React Flow Diagram */}
             <div className="">
-              <ReactFlowDiagram />
+              <ReactFlowDiagram
+                generatorData={generatorLatestData}
+                energyData={energyLatestData}
+                solarData={latestSolarData}
+                loading={latestLoading}
+                error={latestError}
+              />
             </div>
           </div>
         </div>
         {/* Sidebar Section */}
-        <Sidebar 
+        <Sidebar
           environmentData={environmentLatestData}
           solarData={solarData}
           yearlySolarData={yearlySolarData}

@@ -9,8 +9,16 @@ import "@xyflow/react/dist/style.css";
 
 import CustomNode from "./CustomNode";
 import TitleNode from "./TitleNode";
+import { AnimatedSVGEdge } from "./AnimatedSVGEdge";
 
 const defaultViewport = { x: 0, y: 0, zoom: 1 };
+
+const edgeColors = {
+  solar: "green",
+  generator: "red",
+  home: "#c9c747",
+  pdb: "black",
+};
 
 const initialNodes = [
   {
@@ -69,13 +77,6 @@ const initialNodes = [
   },
 ];
 
-const edgeColors = {
-  solar: "green",
-  generator: "red",
-  home: "#c9c747",
-  pdb: "black",
-};
-
 const initialEdges = [
   {
     id: "solar_panel_to_eldc",
@@ -83,8 +84,8 @@ const initialEdges = [
     source: "solar_panel",
     target: "eldc",
     targetHandle: "eldc_left_target_1",
-    animated: true,
-    // style: { stroke: edgeColors.solar, strokeWidth: "2" },
+    // animated: true,
+    style: { stroke: edgeColors.solar, strokeWidth: "2" },
   },
   {
     id: "generator_to_eldc",
@@ -92,8 +93,8 @@ const initialEdges = [
     source: "generator",
     target: "eldc",
     targetHandle: "eldc_left_target_2",
-    animated: true,
-    // style: { stroke: edgeColors.generator, strokeWidth: "2" },
+    // animated: true,
+    style: { stroke: edgeColors.generator, strokeWidth: "2" },
   },
   {
     id: "eldc_to_home",
@@ -101,8 +102,8 @@ const initialEdges = [
     source: "eldc",
     sourceHandle: "eldc_right_source",
     target: "home",
-    animated: true,
-    // style: { stroke: edgeColors.home, strokeWidth: "2" },
+    // animated: true,
+    style: { stroke: edgeColors.home, strokeWidth: "2" },
   },
   {
     id: "pdb_to_eldc",
@@ -110,12 +111,26 @@ const initialEdges = [
     source: "pdb",
     target: "eldc",
     targetHandle: "eldc_left_target_3",
-    animated: true,
-    // style: { stroke: edgeColors.pdb, strokeWidth: "2" },
+    // animated: true,
+    style: { stroke: edgeColors.pdb, strokeWidth: "2" },
   },
 ];
 
-export default function ReactFlowDiagram() {
+const edgeTypes = {
+  animatedSvg: AnimatedSVGEdge,
+};
+
+// we define the nodeTypes outside of the component to prevent re-renderings
+// you could also use useMemo inside the component
+// const nodeTypes = { customNode: CustomNode };
+
+function ReactFlowDiagram({
+  generatorData,
+  energyData,
+  solarData,
+  loading,
+  error,
+}) {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const nodeTypes = useMemo(
@@ -138,25 +153,92 @@ export default function ReactFlowDiagram() {
     (connection) => setEdges((eds) => addEdge(connection, eds)),
     [setEdges]
   );
+
+  const totalGeneratorCurrent =
+    (generatorData?.ia || 0) +
+    (generatorData?.ib || 0) +
+    (generatorData?.ic || 0);
+
+  const totalPDBCurrent =
+    (energyData?.ia || 0) + (energyData?.ib || 0) + (energyData?.ic || 0);
+
+  const totalSolarCurrent =
+    (solarData?.current?.[0] || 0) +
+    (solarData?.current?.[1] || 0) +
+    (solarData?.current?.[2] || 0);
+
+  const totalSolarPower =
+    (solarData?.power?.[0] || 0) +
+    (solarData?.power?.[1] || 0) +
+    (solarData?.power?.[2] || 0);
+
+  const totalSolarPowerInWatt = totalSolarPower * 1000;
+
+  const totalHomeCurrent =
+    totalGeneratorCurrent + totalPDBCurrent + totalSolarCurrent;
+
+  useEffect(() => {
+    // Update edge types based on generator and energy data
+    setEdges((prevEdges) =>
+      prevEdges.map((edge) => {
+        if (edge.id === "generator_to_eldc") {
+          return {
+            ...edge,
+            type: totalGeneratorCurrent === 0 ? "smoothstep" : "animatedSvg",
+          };
+        }
+        if (edge.id === "solar_panel_to_eldc") {
+          return {
+            ...edge,
+            type:
+              totalSolarCurrent >= 1 && totalSolarPowerInWatt >= 200
+                ? "animatedSvg"
+                : "smoothstep",
+          };
+        }
+        if (edge.id === "pdb_to_eldc") {
+          return {
+            ...edge,
+            type: totalPDBCurrent === 0 ? "smoothstep" : "animatedSvg",
+          };
+        }
+        if (edge.id === "eldc_to_home") {
+          return {
+            ...edge,
+            type: totalHomeCurrent === 0 ? "smoothstep" : "animatedSvg",
+          };
+        }
+        return edge;
+      })
+    );
+  }, [
+    totalGeneratorCurrent,
+    totalSolarCurrent,
+    totalPDBCurrent,
+    totalHomeCurrent,
+    totalSolarPowerInWatt,
+    setEdges,
+  ]);
+
   return (
-    <div className="py-2 px-4 h-100 w-100">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        // edgeTypes={edgeTypes}
-        nodeTypes={nodeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        attributionPosition="bottom-left"
-        zoomOnScroll={false}
-        panOnScroll={false}
-        preventScrolling={false}
-        nodesDraggable={true}
-        defaultViewport={defaultViewport}
-        className="reactflow-instance"
-      />
-    </div>
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      edgeTypes={edgeTypes}
+      nodeTypes={nodeTypes}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onConnect={onConnect}
+      fitView
+      attributionPosition="bottom-left"
+      zoomOnScroll={false}
+      panOnScroll={false}
+      preventScrolling={false}
+      nodesDraggable={false}
+      defaultViewport={defaultViewport}
+      className="reactflow-instance"
+    />
   );
 }
+
+export default ReactFlowDiagram;

@@ -1,13 +1,101 @@
-const TitleNode = () => {
+import useLatestData from "../hooks/useLatestData";
+
+const TitleNode = ({ id }) => {
+  const { generatorData, energyData, solarData, error } = useLatestData();
+
+  if (error) {
+    return <p style={{ color: "red" }}>Error loading data</p>;
+  }
+
+  const getDisplayValues = () => {
+    switch (id) {
+      case "solar_title":
+        // return { power: "0", current: "0.00" };
+        return {
+          power: (
+            (solarData?.power?.[0] ?? 0) +
+            (solarData?.power?.[1] ?? 0) +
+            (solarData?.power?.[2] ?? 0)
+          ).toFixed(2),
+          current: (
+            (solarData?.current?.[0] ?? 0) +
+            (solarData?.current?.[1] ?? 0) +
+            (solarData?.current?.[2] ?? 0)
+          ).toFixed(2),
+        };
+      case "generator_title":
+        return {
+          power: generatorData?.zyggl ?? 0,
+          current: (
+            (generatorData?.ia ?? 0) +
+            (generatorData?.ib ?? 0) +
+            (generatorData?.ic ?? 0)
+          ).toFixed(2),
+        };
+      case "home_title":
+        return {
+          power: (
+            (generatorData?.pa ?? 0) +
+            (energyData?.zyggl ?? 0) +
+            (solarData?.power?.[0] ?? 0) +
+            (solarData?.power?.[1] ?? 0) +
+            (solarData?.power?.[2] ?? 0)
+          ).toFixed(2),
+          current: (
+            (generatorData?.ia ?? 0) +
+            (energyData?.ia ?? 0) +
+            (energyData?.ib ?? 0) +
+            (energyData?.ic ?? 0) +
+            (solarData?.current?.[0] ?? 0) +
+            (solarData?.current?.[1] ?? 0) +
+            (solarData?.current?.[2] ?? 0)
+          ).toFixed(2),
+        };
+      case "pdb_title":
+        return {
+          power: (energyData?.zyggl ?? 0).toFixed(2),
+          current: (
+            (energyData?.ia ?? 0) +
+            (energyData?.ib ?? 0) +
+            (energyData?.ic ?? 0)
+          ).toFixed(2),
+        };
+      default:
+        return { power: "-", current: "-" };
+    }
+  };
+
+  const { power, current } = getDisplayValues();
+
+  const powerStyle = {
+    fontSize: "1.5rem",
+    color: "#e11d48", // red-600
+    fontWeight: "500",
+  };
+
+  const unitStyle = {
+    fontSize: "1.125rem",
+    color: "#374151", // gray-900
+    fontWeight: "600",
+    marginLeft: "0.5rem", // ml-2
+  };
+
+  const containerStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    md: { justifyContent: "flex-start" },
+  };
+
   return (
     <div className=" d-flex flex-column justify-content-center align-items-start">
       <div className="px-2 fs-4 fw-semibold">
-        <span className="me-2">23.75</span>
-        <span className="fw-bold">A</span>
+        <span className="me-2">{power}</span>
+        <span className="fw-bold">kW</span>
       </div>
       <div className="px-2 fs-4 fw-semibold">
-        <span className="me-2">107.57</span>
-        <span className="fw-bold">kW</span>
+        <span className="me-2">{current}</span>
+        <span className="fw-bold">A</span>
       </div>
     </div>
   );

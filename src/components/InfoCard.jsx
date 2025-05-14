@@ -2,6 +2,33 @@ import { Sigma, Zap } from "lucide-react";
 import React from "react";
 
 export default function InfoCard({ title, value, icon, flag = null }) {
+  let unit = "";
+  switch (flag) {
+    case "pm":
+      unit = "µg/m\u00B3";
+      break;
+    case "humidity":
+      unit = "%";
+      break;
+    case "taka":
+      unit = "/-";
+      break;
+    default:
+      unit = value < 1000 ? "kWh" : "MWh";
+  }
+  let cardValue = "";
+  {
+    icon === "taka"
+      ? Number(value < 1000 ? value : value)
+      : Number(value < 1000 ? value : value / 1000).toFixed(2);
+  }
+  if (flag === "pm") {
+    cardValue = Number(value < 1000 ? value : value / 1000);
+  } else if (flag === "taka") {
+    cardValue = Number(value);
+  } else {
+    cardValue = Number(value < 1000 ? value : value / 1000).toFixed(2);
+  }
   const iconMap = {
     liveGeneration: (
       <Zap
@@ -73,10 +100,8 @@ export default function InfoCard({ title, value, icon, flag = null }) {
         }}
         className="d-flex justify-content-center align-items-center"
       >
-        <span className="me-1 fw-bold">{value}</span>
-        <span className="fw-normal">
-          {flag === "pm" ? "µg/m\u00B3" : flag === "humidity" ? "%" : "MWh"}
-        </span>
+        <span className="me-1 fw-bold">{cardValue}</span>
+        <span className="fw-bold">{unit}</span>
       </div>
     </div>
   );

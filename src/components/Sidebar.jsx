@@ -3,8 +3,14 @@ import LifeEnergyEquivalents from "./LifeEnergyEquivalents";
 import InfoCard from "./InfoCard";
 import Heading from "./Heading";
 
-function Sidebar({environmentData, solarData, yearlySolarData}) {
-  console.log(environmentData)
+function Sidebar({ environmentData, solarData, yearlySolarData }) {
+  const latestData = solarData?.[solarData?.length - 1];
+  const todayLiveGeneration =
+    (latestData?.energy_consumption[0] -
+      solarData?.[0]?.energy_consumption?.[0]) /
+    1000;
+  const solarEnergyConsumptionInKWh = yearlySolarData / 1000;
+
   return (
     <divs
       className="d-grid border border-2 border-secondary rounded"
@@ -42,7 +48,7 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
                 Generation
               </>
             }
-            value={environmentData?.pm1_0_ug_m3 ?? 0}
+            value={todayLiveGeneration?.toFixed(2) || 0}
             icon={`liveGeneration`}
           />
           <InfoCard
@@ -53,7 +59,7 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
                 Generation
               </>
             }
-            value={`114.91`}
+            value={Number((yearlySolarData ?? 0) / 1000).toFixed(2) || 0}
             icon={`cumulativeGeneration`}
           />
           <InfoCard
@@ -64,8 +70,9 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
                 Savings
               </>
             }
-            value={`114.91`}
+            value={`${((yearlySolarData / 1000) * 13).toFixed(0)}` || 0}
             icon={`taka`}
+            flag={`taka`}
           />
         </div>
 
@@ -98,7 +105,7 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
         >
           <InfoCard
             title={`PM 1.0`}
-            value={`34`}
+            value={environmentData?.pm1_0_ug_m3 ?? 0}
             icon={
               <div
                 className="fw-semibold"
@@ -119,7 +126,7 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
           />
           <InfoCard
             title={`PM 2.5`}
-            value={`34`}
+            value={environmentData?.pm2_5_ug_m3 ?? 0}
             icon={
               <div
                 className="fw-semibold"
@@ -139,8 +146,8 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
             flag={`pm`}
           />
           <InfoCard
-            title={`PM 1.0`}
-            value={`34`}
+            title={`PM 10.0`}
+            value={environmentData?.pm10_0_ug_m3 ?? 0}
             icon={
               <div
                 className="fw-semibold"
@@ -161,7 +168,11 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
           />
           <InfoCard
             title={`Humidity`}
-            value={`34`}
+            value={
+              environmentData?.hum_percent
+                ? environmentData.hum_percent.toFixed(2)
+                : "0"
+            }
             icon={
               <div
                 className="fw-semibold"
@@ -221,7 +232,10 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
             title={
               <>
                 Equivalent to saving at least{" "}
-                <span className="fw-bold">1618 kg</span> of CO₂.
+                <span className="fw-bold">
+                  {(solarEnergyConsumptionInKWh * 0.997).toFixed(0)} kg
+                </span>{" "}
+                of CO₂.
               </>
             }
           />
@@ -230,7 +244,10 @@ function Sidebar({environmentData, solarData, yearlySolarData}) {
             title={
               <>
                 Equivalent to saving at least{" "}
-                <span className="fw-bold">649 kg</span> of Standard Coal.
+                <span className="fw-bold">
+                  {(0.4 * solarEnergyConsumptionInKWh)?.toFixed(0)} kg
+                </span>{" "}
+                of Standard Coal.
               </>
             }
           />

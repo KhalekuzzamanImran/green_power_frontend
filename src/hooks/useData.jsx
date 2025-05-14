@@ -113,7 +113,7 @@ const useData = ({ timeRange }) => {
     if (!token) return;
 
     fetchData();
-    const interval = setInterval(fetchData, 60 * 1000); // Refresh every 60 sec
+    const interval = setInterval(fetchData, 60 * 5000); // Refresh every 60 sec
 
     return () => clearInterval(interval);
   }, [fetchData, token]);
