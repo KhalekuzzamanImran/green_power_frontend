@@ -247,7 +247,7 @@ function App() {
         />
       </div>
       {/* Footer Section */}
-      <Footer />
+      <Footer solarData={solarData}/>
     </main>
   );
 }

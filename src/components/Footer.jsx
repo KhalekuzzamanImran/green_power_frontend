@@ -1,8 +1,9 @@
 import React from "react";
 import AreaChart from "./AreaChart";
 import BarChart from "./BarChart";
+import EnergyConsumtionChart from "./EnergyConsumptionChart";
 
-function Footer() {
+function Footer({ solarData }) {
   return (
     <div
       className=" d-grid"
@@ -57,7 +58,12 @@ function Footer() {
         </div>
         {/* Area Chart */}
         <div className="">
-          <AreaChart />
+          <EnergyConsumtionChart
+            data={solarData?.map((entry) => [
+              new Date(entry?.timestamp).getTime() + 6 * 60 * 60 * 1000, // Add 6 hours (in milliseconds)
+              entry?.energy_consumption?.[0], // Extract the first energy consumption value
+            ])}
+          />
         </div>
       </div>
     </div>
