@@ -168,6 +168,24 @@ function App() {
   const yearlyTotal =
     yearlySolarData / 1000 + YearlyGeneratorData + yearlyEnergyData;
 
+  const pieChartData = [
+    {
+      title: "Daily",
+      data: [dailySolarData / 1000, dailyGeneratorData, dailyEnergyData],
+      total: dailyTotal,
+    },
+    {
+      title: "Current month cumulative",
+      data: [monthlySolarData / 1000, monthlyGeneratorData, monthlyEnergyData],
+      total: monthlyTotal,
+    },
+    {
+      title: "Till Date cumulative",
+      data: [yearlySolarData / 1000, YearlyGeneratorData, yearlyEnergyData],
+      total: yearlyTotal,
+    },
+  ];
+
   return (
     <main
       className="container-fluid d-grid"
@@ -208,7 +226,7 @@ function App() {
             }}
           >
             {/* Pie Charts Container */}
-            <PieChartsContainer />
+            <PieChartsContainer data={pieChartData} />
             {/* React Flow Diagram */}
             <div className="">
               <ReactFlowDiagram

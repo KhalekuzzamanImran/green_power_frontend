@@ -12,7 +12,7 @@ function Sidebar({ environmentData, solarData, yearlySolarData }) {
   const solarEnergyConsumptionInKWh = yearlySolarData / 1000;
 
   return (
-    <divs
+    <div
       className="d-grid border border-2 border-secondary rounded"
       style={{
         gridTemplateRows: "1fr 12fr",
@@ -253,7 +253,7 @@ function Sidebar({ environmentData, solarData, yearlySolarData }) {
           />
         </div>
       </div>
-    </divs>
+    </div>
   );
 }
 
