@@ -1,29 +1,101 @@
 import React from "react";
+import Legends from "./Legends";
 import PieChart from "./PieChart";
 
-export default function PieChartsContainer() {
+function PieChartsContainer() {
   return (
-    <>
-      <div className="bg-primary row gx-0" style={{ height: "48%" }}>
-        <div className="col-5 bg-danger">
-          <PieChart isShowLegend={true} />
+    <div
+      className=" d-grid"
+      style={{
+        grieTemplateRows: "1fr 1fr",
+        gap: "3px",
+        boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
+      }}
+    >
+      {/* Pie Charts Row 1 */}
+      <div
+        className=" d-grid"
+        style={{
+          gridTemplateColumns: "3fr 7fr",
+          gap: "3px",
+        }}
+      >
+        {/* Pie Charts Legend */}
+        <div className="">
+          <Legends />
         </div>
-        <div className="col bg-secondary"></div>
-        <div className="col-6 bg-success">
-          <PieChart isShowLegend={false} />
-          <h6 className="text-center">Daily</h6>
+        {/* Pie Chart 1 */}
+        <div
+          className=" d-grid"
+          style={{
+            gridTemplateRows: "4fr 1fr",
+            gap: "3px",
+          }}
+        >
+          <div className=" d-flex justify-content-start align-items-end">
+            <PieChart title="Daily" />
+          </div>
+          <div className="">
+            <h6
+              className="text-start fw-semibold"
+              style={{ fontSize: "14px", marginLeft: "60px" }}
+            >
+              Daily
+            </h6>
+          </div>
         </div>
       </div>
-      <div className="bg-primary row" style={{ height: "52%" }}>
-        <div className="col-6 bg-primary">
-          <PieChart isShowLegend={false} />
-          <h6 className="text-center">Current Month Cumulative</h6>
+      {/* Pie Charts Row 2 */}
+      <div
+        className=" d-grid"
+        style={{
+          gridTemplateColumns: "1fr 1fr",
+          gap: "3px",
+        }}
+      >
+        {/* Pie Chart 2 */}
+        <div
+          className=" d-grid"
+          style={{
+            gridTemplateRows: "4fr 1fr",
+            gap: "3px",
+          }}
+        >
+          <div className=" d-flex justify-content-center align-items-center">
+            <PieChart title="Current Month Cumulative" />
+          </div>
+          <div className="">
+            <h6
+              className="text-center fw-semibold"
+              style={{ fontSize: "14px" }}
+            >
+              Current Month Cumulative
+            </h6>
+          </div>
         </div>
-        <div className="col-6 bg-danger">
-          <PieChart isShowLegend={false} />
-          <h6 className="text-center">Till Date Cumulative</h6>
+        {/* Pie Chart 3 */}
+        <div
+          className=" d-grid"
+          style={{
+            gridTemplateRows: "4fr 1fr",
+            gap: "3px",
+          }}
+        >
+          <div className=" d-flex justify-content-center align-items-center">
+            <PieChart title="Till Date Cumulative" />
+          </div>
+          <div className=" ">
+            <h6
+              className="text-center fw-semibold"
+              style={{ fontSize: "14px" }}
+            >
+              Till Date Cumulative
+            </h6>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
+
+export default PieChartsContainer;
