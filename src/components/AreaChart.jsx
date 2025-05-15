@@ -78,7 +78,7 @@ const AreaChart = ({ data }) => {
       enabled: false,
     },
 
-    colors: ["black"],
+    colors: ["rgba(28, 103, 72, 1)"],
     markers: {
       size: 0,
       colors: ["black"],
@@ -134,10 +134,9 @@ const AreaChart = ({ data }) => {
         formatter: undefined,
       },
       y: {
-        // formatter: undefined,
         formatter: function (val) {
-          let value = val < 1000 ? val : val / 1000;
-          let unit = val < 1000 ? "Wh" : "kWh";
+          let value = val < 1000 ? val : val < 1000000 ? val : val / 1000000;
+          let unit = val < 1000 ? "W" : val < 1000000 ? "kW" : "MW";
           return `${value?.toFixed(2)} ${unit}`;
         },
         title: {

@@ -9,39 +9,39 @@ const containerStyle = {
 
 // Default to Dhaka if user location can't be fetched
 const fallbackPosition = {
-  lat: 23.8103,
-  lng: 90.4125,
+  lat: 23.840208,
+  lng: 90.486422,
 };
 
 const GoogleMapComponent = () => {
-  const [markerPosition, setMarkerPosition] = useState(null);
+  const [markerPosition, setMarkerPosition] = useState(fallbackPosition);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBQvHVNScKQbXvjlCNJ6ykdEbch-JC5DyQ",
   });
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setMarkerPosition({ lat: latitude, lng: longitude });
-        },
-        (error) => {
-          console.error("Error getting location", error);
-          setMarkerPosition(fallbackPosition); // fallback
-        },
-        {
-          timeout: 10000,
-        }
-      );
-    } else {
-      console.error("Geolocation not supported");
-      setMarkerPosition(fallbackPosition); // fallback
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const { latitude, longitude } = position.coords;
+  //         setMarkerPosition({ lat: latitude, lng: longitude });
+  //       },
+  //       (error) => {
+  //         console.error("Error getting location", error);
+  //         setMarkerPosition(fallbackPosition); // fallback
+  //       },
+  //       {
+  //         timeout: 10000,
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation not supported");
+  //     setMarkerPosition(fallbackPosition); // fallback
+  //   }
+  // }, []);
 
-  if (!isLoaded || !markerPosition) return <div>Loading...</div>;
+  if (!isLoaded) return <div>Loading...</div>;
 
   const { lat, lng } = markerPosition;
   const googleMapsLink = `https://www.google.com/maps?q=${lat},${lng}`;

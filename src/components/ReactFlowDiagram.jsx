@@ -233,6 +233,9 @@ function ReactFlowDiagram({
       attributionPosition="bottom-left"
       zoomOnScroll={false}
       panOnScroll={false}
+      zoomOnPinch={false}
+      zoomOnDoubleClick={false}
+      panOnDrag={false}
       preventScrolling={false}
       nodesDraggable={false}
       defaultViewport={defaultViewport}

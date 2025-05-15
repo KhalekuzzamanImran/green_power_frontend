@@ -1,91 +1,141 @@
 import Chart from "react-apexcharts";
 
-const BarChart = ({ data = [] }) => {
-  const hourlyDiffMap = new Map();
+const BarChart = ({ data }) => {
+  function getFirstAndLastPerHour(arr) {
+    const firstAndLastValuesPerHour = new Map();
 
-  data?.forEach(([timestamp, value]) => {
-    const date = new Date(timestamp);
-    if (isNaN(date)) return;
+    arr.forEach(([timestamp, value]) => {
+      const hourKey = (new Date(timestamp).getHours() + 6) % 24;
 
-    const hour = date.getUTCHours(); // Use UTC hour
+      const current = firstAndLastValuesPerHour.get(hourKey);
+      const newEntry = [timestamp, value];
 
-    if (!hourlyDiffMap.has(hour)) {
-      hourlyDiffMap.set(hour, { first: value, last: value });
-    } else {
-      const entry = hourlyDiffMap.get(hour);
-      entry.last = value;
-      hourlyDiffMap.set(hour, entry);
-    }
-  });
+      if (!current) {
+        firstAndLastValuesPerHour.set(hourKey, {
+          first: newEntry,
+          last: newEntry,
+        });
+      } else {
+        const [firstTime] = current.first;
+        const [lastTime] = current.last;
 
-  const sortedHours = [...hourlyDiffMap.keys()].sort((a, b) => a - b);
-  const differences = sortedHours.map(
-    (hour) => hourlyDiffMap.get(hour).last - hourlyDiffMap.get(hour).first
-  );
+        if (new Date(timestamp) < new Date(firstTime)) {
+          current.first = newEntry;
+        }
 
-  // ✅ Correct AM/PM formatting for UTC hours
-  const formatHour = (hour) => {
-    const period = hour >= 12 ? "AM" : "PM";
-    const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-    return `${formattedHour} ${period}`;
-  };
+        if (new Date(timestamp) > new Date(lastTime)) {
+          current.last = newEntry;
+        }
 
-  const chartCategories = sortedHours.map(formatHour);
+        firstAndLastValuesPerHour.set(hourKey, current);
+      }
+    });
 
-  const formatEnergy = (val) => {
-    if (val < 1000) return `${val.toFixed(2)} Wh`;
-    return `${(val / 1000).toFixed(2)} kWh`;
-  };
+    return Array.from(firstAndLastValuesPerHour.entries())
+      .sort((a, b) => a[0] - b[0])
+      .map(([hour, { first, last }]) => [hour, last[1] - first[1]]);
+  }
+
+  const calculatedData = getFirstAndLastPerHour(data);
+  console.log(calculatedData);
 
   const series = [
     {
-      name: "Energy Consumption",
-      data: differences,
+      name: "Energy consumption per hour",
+      data: calculatedData.map(([, diff]) => diff),
     },
   ];
 
   const options = {
     chart: {
-      id: "delta_energy_chart",
+      id: "energy_consumption",
       type: "bar",
       animations: {
         enabled: true,
-        easing: "easeinout",
-        dynamicAnimation: { speed: 500 },
+        easing: "linear",
+        dynamicAnimation: { speed: 1000 },
       },
-      toolbar: { autoSelected: "zoom" },
+      zoom: { enabled: false },
+      toolbar: {
+        show: true,
+        tools: {
+          download: true,
+        },
+        export: {
+          csv: {
+            filename: "energy_consumption",
+            headerCategory: "Time (24-hour format)", // <-- ✅ Custom header for x-axis
+            headerValue: "Energy consumption per hour(Wh)", // <-- ✅ Custom header for series
+          },
+        },
+      },
     },
+
     xaxis: {
-      categories: chartCategories,
+      categories: calculatedData.map(([hour]) => {
+        return `${hour.toString().padStart(2, "0")}:00`;
+      }),
       title: {
-        text: "Time of Day",
-        style: { fontSize: "13px", fontWeight: 600 },
+        text: "Hour of Day",
+        style: {
+          color: "#333",
+          fontSize: "14px",
+          fontFamily: "Arial, sans-serif",
+          fontWeight: 600,
+        },
       },
     },
+
     yaxis: {
-      title: {
-        text: "Power",
-        style: { fontSize: "13px", fontWeight: 600 },
-      },
       labels: {
-        formatter: formatEnergy,
-        style: { fontSize: "12px" },
+        formatter: function (val) {
+          const value = val < 1000 ? val : val / 1000;
+          const unit = val < 1000 ? "Wh" : "kWh";
+          return `${value.toFixed(2)} ${unit}`;
+        },
+      },
+      title: {
+        text: "Energy Consumption",
+        offsetY: 22,
+        style: {
+          color: "#333",
+          fontSize: "14px",
+          fontFamily: "Arial, sans-serif",
+          fontWeight: 600,
+        },
       },
     },
-    tooltip: {
-      x: {
-        formatter: (_, { dataPointIndex }) =>
-          `Hour: ${formatHour(sortedHours[dataPointIndex])}`,
-      },
-      y: {
-        formatter: formatEnergy,
-        title: { formatter: () => "Power" },
-      },
-    },
-    colors: ["#1a9167"],
+
     dataLabels: { enabled: false },
-    fill: {
-      type: "solid",
+
+    colors: ["#1a9167"],
+    markers: { size: 0 },
+    stroke: { show: true, width: 2 },
+
+    legend: { show: true },
+
+    // fill: {
+    //   type: "gradient",
+    //   gradient: {
+    //     shadeIntensity: 1,
+    //     opacityFrom: 0.2,
+    //     opacityTo: 0,
+    //     stops: [0, 90, 100],
+    //   },
+    // },
+
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: function (val) {
+          const value = val < 1000 ? val : val / 1000;
+          const unit = val < 1000 ? "Wh" : "kWh";
+          return `${value.toFixed(2)} ${unit}`;
+        },
+        title: {
+          formatter: (seriesName) => seriesName,
+        },
+      },
     },
   };
 
