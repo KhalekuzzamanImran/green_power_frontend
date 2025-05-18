@@ -57,7 +57,7 @@ function PieChartsContainer({ data }) {
           }}
         >
           <div className="">
-            <TemporaryChart chartTitle="Daily" data={data?.[0].data} />
+            <TemporaryChart chartTitle="Daily" data={data?.[1].data} />
           </div>
           <div className="">
             <h6
@@ -75,7 +75,7 @@ function PieChartsContainer({ data }) {
           }}
         >
           <div className="">
-            <TemporaryChart chartTitle="Daily" data={data?.[0].data} />
+            <TemporaryChart chartTitle="Daily" data={data?.[2].data} />
           </div>
           <div className="">
             <h6
