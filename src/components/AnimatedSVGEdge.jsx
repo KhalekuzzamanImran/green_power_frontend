@@ -32,10 +32,17 @@ export function AnimatedSVGEdge({
 
   return (
     <>
-      <BaseEdge id={id} path={edgePath} />
+      <BaseEdge
+        id={id}
+        path={edgePath}
+        style={{
+          stroke: circleColor,
+          strokeWidth: 3,
+        }}
+      />
       <svg>
         {Array.from({ length: circleCount }).map((_, index) => (
-          <circle key={index} r="5" fill={circleColor}>
+          <circle key={index} r="8" fill={circleColor}>
             <animateMotion
               dur="3s"
               repeatCount="indefinite"

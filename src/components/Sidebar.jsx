@@ -18,7 +18,8 @@ function Sidebar({ environmentData, solarData, yearlySolarData }) {
         gridTemplateRows: "1fr 12fr",
         gap: "2px",
         boxShadow: "0px 4px 6px -1px rgba(0,0,0,0.1)",
-        backgroundColor: "rgba(209, 248, 253, 1)",
+        // backgroundColor: "rgba(209, 248, 253, 1)",
+        backgroundColor: "rgb(209 255 226)",
       }}
     >
       {/* Sidebar Heading */}
@@ -223,7 +224,10 @@ function Sidebar({ environmentData, solarData, yearlySolarData }) {
             title={
               <>
                 Equivalent to saving at least{" "}
-                <span className="fw-bold">245</span> trees.
+                <span className="fw-bold">
+                  {((solarEnergyConsumptionInKWh * 0.997) / 24).toFixed(0)}{" "}
+                </span>{" "}
+                trees.
               </>
             }
           />

@@ -5,7 +5,7 @@ function Heading({ title }) {
     <div
       className="#007a92 text-center border border-2 rounded text-light fs-6 fw-semibold"
       style={{
-        backgroundColor: "#007a92",
+        backgroundColor: "#1c6748",
         letterSpacing: "2px",
         padding: "1px 0px",
       }}

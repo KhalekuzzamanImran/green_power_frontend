@@ -30,6 +30,7 @@ function LifeEnergyEquivalents({ iconName, title, value }) {
           // backgroundColor: "#e3f1f4",
           padding: "5px 10px",
           letterSpacing: "1px",
+          fontWeight: "500",
         }}
       >
         {title}

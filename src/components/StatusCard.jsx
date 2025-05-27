@@ -2,6 +2,19 @@ import React from "react";
 import GoogleMapComponent from "./GoogleMapComponent";
 
 export default function StatusCard({ title }) {
+  const codDate = new Date("2025-02-27"); // COD: 27th February 2025
+  const today = new Date();
+
+  // Clear time part for accurate difference in days
+  codDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  const diffInTime = today - codDate;
+  const operationalDays = Math.floor(diffInTime / (1000 * 60 * 60 * 24));
+
+  // console.log(`COD Date: ${codDate.toDateString()}`);
+  // console.log(`Operational Days: ${operationalDays}`);
+
   let content = "";
   if (title === "Location") {
     content = <GoogleMapComponent />;
@@ -21,18 +34,18 @@ export default function StatusCard({ title }) {
           <span className="fw-semibold">45 MWh</span>
         </div>
         <div
-          className=""
+          className="fw-semibold"
           style={{ lineHeight: "10px", padding: "0px 10px", fontSize: "13px" }}
         >
-          <span className="me-2 fw-semibold">COD: </span>
-          <span>Undefined</span>
+          <span className="me-2">COD: </span>
+          <span>{`27 Feb (${operationalDays} days)`}</span>
         </div>
         <div
           className=""
           style={{ lineHeight: "10px", padding: "0px 10px", fontSize: "13px" }}
         >
           <span className="me-2 fw-semibold">Client: </span>
-          <span className="fw-semibold">Green Power</span>
+          <span className="fw-semibold">CCCL</span>
         </div>
       </div>
     );

@@ -31,7 +31,7 @@ function PieChartsContainer({ data }) {
           }}
         >
           <div className=" d-flex justify-content-start">
-            <TemporaryChart chartTitle="Daily" data={data?.[0].data} />
+            <PieChart chartTitle="Daily" data={data?.[0].data} />
           </div>
           <div className="">
             <h6
@@ -57,7 +57,7 @@ function PieChartsContainer({ data }) {
           }}
         >
           <div className="">
-            <TemporaryChart chartTitle="Daily" data={data?.[1].data} />
+            <PieChart chartTitle="Daily" data={data?.[1].data} />
           </div>
           <div className="">
             <h6
@@ -75,7 +75,7 @@ function PieChartsContainer({ data }) {
           }}
         >
           <div className="">
-            <TemporaryChart chartTitle="Daily" data={data?.[2].data} />
+            <PieChart chartTitle="Daily" data={data?.[2].data} />
           </div>
           <div className="">
             <h6

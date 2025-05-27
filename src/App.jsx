@@ -193,6 +193,7 @@ function App() {
         height: "100vh",
         gridTemplateRows: "1.5fr 6fr .5fr",
         gap: "5px",
+        overflow: "hidden",
       }}
     >
       {/* Header Section */}
@@ -213,7 +214,8 @@ function App() {
             gap: "2px",
             // boxShadow: "4px 0 6px -1px rgba(0,0,0,0.1)",
             boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)",
-            backgroundColor: "rgba(209, 248, 253, 1)",
+            // backgroundColor: "rgba(209, 248, 253, 1)",
+            backgroundColor: "rgb(209 255 226)",
           }}
         >
           {/* Left Content Heading */}

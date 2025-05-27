@@ -85,7 +85,7 @@ const initialEdges = [
     target: "eldc",
     targetHandle: "eldc_left_target_1",
     // animated: true,
-    style: { stroke: edgeColors.solar, strokeWidth: "2" },
+    style: { stroke: edgeColors.solar, strokeWidth: "3" },
   },
   {
     id: "generator_to_eldc",
@@ -94,7 +94,7 @@ const initialEdges = [
     target: "eldc",
     targetHandle: "eldc_left_target_2",
     // animated: true,
-    style: { stroke: edgeColors.generator, strokeWidth: "2" },
+    style: { stroke: edgeColors.generator, strokeWidth: "3" },
   },
   {
     id: "eldc_to_home",
@@ -103,7 +103,7 @@ const initialEdges = [
     sourceHandle: "eldc_right_source",
     target: "home",
     // animated: true,
-    style: { stroke: edgeColors.home, strokeWidth: "2" },
+    style: { stroke: edgeColors.home, strokeWidth: "3" },
   },
   {
     id: "pdb_to_eldc",
@@ -112,7 +112,7 @@ const initialEdges = [
     target: "eldc",
     targetHandle: "eldc_left_target_3",
     // animated: true,
-    style: { stroke: edgeColors.pdb, strokeWidth: "2" },
+    style: { stroke: edgeColors.pdb, strokeWidth: "3" },
   },
 ];
 
