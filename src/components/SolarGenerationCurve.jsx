@@ -3,9 +3,8 @@ import Chart from "react-apexcharts";
 
 // Utility function to scale and label power values
 const formatPowerValue = (val) => {
-  if (val < 1000) return `${val.toFixed(2)} W`;
-  if (val < 1_000_000) return `${(val / 1000).toFixed(2)} kW`;
-  return `${(val / 1_000_000).toFixed(2)} MW`;
+  if (val < 1000) return `${val.toFixed(2)} kW`;
+  return `${(val / 1000).toFixed(2)} MW`;
 };
 
 // Utility to get today's start and end in milliseconds
