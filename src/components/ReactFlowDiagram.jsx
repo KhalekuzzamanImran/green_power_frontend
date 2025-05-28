@@ -17,7 +17,7 @@ const edgeColors = {
   solar: "green",
   generator: "red",
   home: "#c9c747",
-  pdb: "black",
+  pdb: "#c9c747",
 };
 
 const initialNodes = [

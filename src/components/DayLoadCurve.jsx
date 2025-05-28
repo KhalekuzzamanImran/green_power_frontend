@@ -77,7 +77,7 @@ const DayLoadCurve = React.memo(({ data = [] }) => {
           formatter: formatPowerValue,
         },
         title: {
-          text: "CCCL Solar Power",
+          text: "CCCL Load",
           offsetX: -5,
           offsetY: 10,
           style: {

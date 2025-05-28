@@ -23,7 +23,7 @@ export function AnimatedSVGEdge({
     solar_panel_to_eldc: "green",
     generator_to_eldc: "red",
     eldc_to_home: "#c9c747",
-    pdb_to_eldc: "black",
+    pdb_to_eldc: "#c9c747",
   };
 
   const circleColor = circleColorMap[id] || "black";

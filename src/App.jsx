@@ -27,7 +27,7 @@ function App() {
     timeRange: "THIS_YEAR",
   });
 
-  const { generatorData, solarData } = useData({
+  const { generatorData, solarData, gridData } = useData({
     timeRange: "TODAY",
   });
 
@@ -249,7 +249,7 @@ function App() {
         />
       </div>
       {/* Footer Section */}
-      <Footer solarData={solarData} />
+      <Footer solarData={solarData} gridData={gridData}/>
     </main>
   );
 }
