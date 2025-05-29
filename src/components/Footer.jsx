@@ -3,13 +3,6 @@ import SolarGenerationCurve from "./SolarGenerationCurve";
 import DayLoadCurve from "./DayLoadCurve";
 
 function Footer({ solarData, gridData }) {
-  console
-    .log
-    // gridData?.[0]?.data[gridData?.[0]?.data.length - 1]?.created_time
-    // new Date(solarData?.[0]?.timestamp).getTime()
-    ();
-  // Combine solar and grid power based on rounded timestamp (to nearest minute)
-
   const combinePowerData = (solarData, gridData) => {
     const gridPowerMap = new Map();
     const roundToMinute = (timeString) => {
@@ -35,10 +28,10 @@ function Footer({ solarData, gridData }) {
       return date.getTime();
     };
 
-    console.log(
-      new Date(roundToMinute(gridData?.[0]?.data?.[0]?.created_time)),
-      new Date(roundToMinute(solarData?.[0]?.timestamp) + 21600000)
-    );
+    // console.log(
+    //   new Date(roundToMinute(gridData?.[0]?.data?.[0]?.created_time)),
+    //   new Date(roundToMinute(solarData?.[0]?.timestamp) + 21600000)
+    // );
 
     const powerMap = new Map();
 
