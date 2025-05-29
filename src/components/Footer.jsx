@@ -3,8 +3,15 @@ import SolarGenerationCurve from "./SolarGenerationCurve";
 import DayLoadCurve from "./DayLoadCurve";
 
 function Footer({ solarData, gridData }) {
+  console
+    .log
+    // gridData?.[0]?.data[gridData?.[0]?.data.length - 1]?.created_time
+    // new Date(solarData?.[0]?.timestamp).getTime()
+    ();
   // Combine solar and grid power based on rounded timestamp (to nearest minute)
+
   const combinePowerData = (solarData, gridData) => {
+    const gridPowerMap = new Map();
     const roundToMinute = (timeString) => {
       if (!timeString) return null;
 
@@ -28,10 +35,10 @@ function Footer({ solarData, gridData }) {
       return date.getTime();
     };
 
-    // console.log(
-    //   new Date(roundToMinute(gridData?.[0]?.data?.[0]?.created_time)).getTime(),
-    //   new Date(roundToMinute(solarData?.[0]?.timestamp) + 21600000).getTime()
-    // );
+    console.log(
+      new Date(roundToMinute(gridData?.[0]?.data?.[0]?.created_time)),
+      new Date(roundToMinute(solarData?.[0]?.timestamp) + 21600000)
+    );
 
     const powerMap = new Map();
 
@@ -53,17 +60,18 @@ function Footer({ solarData, gridData }) {
       // if (powerMap.has(time)) console.log(powerMap.get(time), entry?.pc);
       if (time !== null && powerMap.has(time)) {
         const power = entry?.pc || 0;
-        powerMap.set(time, powerMap.get(time) + power);
+        gridPowerMap.set(time, powerMap.get(time) + power);
       }
     });
 
     // Step 3: Format result
-    return Array.from(powerMap.entries())
+    return Array.from(gridPowerMap.entries())
       .map(([timestamp, totalPower]) => [timestamp, totalPower])
       .sort((a, b) => a[0] - b[0]);
   };
 
   const combinedData = combinePowerData(solarData, gridData);
+  console.log(combinedData.length);
 
   const solarTemp = solarData?.map((entry) => [
     entry?.timestamp,
