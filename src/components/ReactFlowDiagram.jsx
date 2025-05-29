@@ -14,10 +14,10 @@ import { AnimatedSVGEdge } from "./AnimatedSVGEdge";
 const defaultViewport = { x: 0, y: 0, zoom: 1 };
 
 const edgeColors = {
-  solar: "green",
-  generator: "red",
+  solar: "#008000",
+  generator: "#FF2C2C",
   home: "#c9c747",
-  pdb: "#c9c747",
+  pdb: "#FFDE21",
 };
 
 const initialNodes = [

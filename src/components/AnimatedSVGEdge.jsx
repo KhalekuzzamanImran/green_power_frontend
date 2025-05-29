@@ -20,10 +20,10 @@ export function AnimatedSVGEdge({
   });
 
   const circleColorMap = {
-    solar_panel_to_eldc: "green",
-    generator_to_eldc: "red",
+    solar_panel_to_eldc: "#008000",
+    generator_to_eldc: "#FF2C2C",
     eldc_to_home: "#c9c747",
-    pdb_to_eldc: "#c9c747",
+    pdb_to_eldc: "#FFDE21",
   };
 
   const circleColor = circleColorMap[id] || "black";
