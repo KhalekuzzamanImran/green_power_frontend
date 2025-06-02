@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Legends() {
   const labels = ["Solar", "Grid", "Generator"];
-  const colors = ["#008000", "#FF2C2C", "#FFDE21"];
+  const colors = ["#008000", "#FFDE21", "#FF2C2C"];
 
   return (
     <div>
