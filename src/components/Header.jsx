@@ -19,7 +19,7 @@ function Header() {
       </div>
       <div className=" d-flex justify-content-center align-items-center gap-2">
         <WeatherWidget />
-        <StatusCard title={`Solar Irradiation`} />
+        {/* <StatusCard title={`Solar Irradiation`} /> */}
         <StatusCard title={`Location`} />
         <StatusCard title={`Project Highlights`} />
       </div>

@@ -4,6 +4,7 @@ import Heading from "./components/Heading";
 import PieChartsContainer from "./components/PieChartsContainer";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
 import Sidebar from "./components/Sidebar";
+import StackedBarChartContainer from "./components/StackedBarChartContainer";
 import useData from "./hooks/useData";
 import useEnergyData from "./hooks/useEnergyData";
 import useEnyNowData from "./hooks/useEnyNowData";
@@ -102,7 +103,8 @@ function App() {
             }}
           >
             {/* Pie Charts Container */}
-            <PieChartsContainer data={pieChartData} />
+            {/* <PieChartsContainer data={pieChartData} /> */}
+            <StackedBarChartContainer data={pieChartData}/>
             {/* React Flow Diagram */}
             <div className="">
               <ReactFlowDiagram

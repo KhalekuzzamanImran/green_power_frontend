@@ -32,7 +32,7 @@ export default function WeatherWidget() {
   return (
     <div
       style={{
-        width: "170px",
+        width: "28%",
         height: "95%",
         backgroundColor: "#e3f1f4",
         border: "2px solid #507680",
@@ -42,19 +42,19 @@ export default function WeatherWidget() {
       }}
     >
       <div className="d-flex justify-content-between gap-2">
-        <h4 className="m-0">{`${weatherData?.main?.temp?.toFixed(1)} °C`}</h4>
+        <h3 className="m-0">{`${weatherData?.main?.temp?.toFixed(1)} °C`}</h3>
         <img
           src={weatherIcon}
           alt={weatherCondition}
-          width={30}
-          height={30}
-          style={{ marginRight: "10px" }}
+          width={40}
+          height={40}
+          style={{ marginRight: "20px" }}
         />
       </div>
-      <p className="m-0 p-0" style={{ fontSize: "14px" }}>
+      <p className="m-0 p-0" style={{ fontSize: "14px", letterSpacing: "1px" }}>
         Dhaka, Bangladesh
       </p>
-      <p className="m-0 p-0" style={{ fontSize: "14px" }}>
+      <p className="m-0 p-0" style={{ fontSize: "14px", letterSpacing: "1px" }}>
         Wind: <span className="fw-semibold">{windSpeedKmh}</span> km/h (
         <span className="fw-semibold">{windDirection}°</span>)
       </p>

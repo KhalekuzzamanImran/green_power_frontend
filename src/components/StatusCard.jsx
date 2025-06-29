@@ -20,32 +20,23 @@ export default function StatusCard({ title }) {
     content = <GoogleMapComponent />;
   } else if (title === "Project Highlights") {
     content = (
-      <div
-        className="d-grid"
-        style={{
-          gridTemplateRows: "1fr 1fr 1fr",
-        }}
-      >
-        <div
-          className=""
-          style={{ lineHeight: "10px", padding: "2px 10px", fontSize: "13px" }}
-        >
-          <span className="me-2 fw-semibold">Capacity: </span>
-          <span className="fw-semibold">45 MWh</span>
+      <div style={{ fontSize: "13px", paddingLeft: "10px" }}>
+        <div style={{ display: "flex", marginBottom: "4px" }}>
+          <div style={{ minWidth: "60px", fontWeight: "600" }}>Capacity</div>
+          <div style={{ margin: "0 4px" }}>:</div>
+          <div style={{ fontWeight: "600" }}>45 MWh</div>
         </div>
-        <div
-          className="fw-semibold"
-          style={{ lineHeight: "10px", padding: "0px 10px", fontSize: "13px" }}
-        >
-          <span className="me-2">COD: </span>
-          <span>{`27 Feb (${operationalDays} days)`}</span>
+
+        <div style={{ display: "flex", marginBottom: "4px" }}>
+          <div style={{ minWidth: "60px", fontWeight: "600" }}>COD</div>
+          <div style={{ margin: "0 4px" }}>:</div>
+          <div>{`27 February (${operationalDays} Days)`}</div>
         </div>
-        <div
-          className=""
-          style={{ lineHeight: "10px", padding: "0px 10px", fontSize: "13px" }}
-        >
-          <span className="me-2 fw-semibold">Client: </span>
-          <span className="fw-semibold">CCCL</span>
+
+        <div style={{ display: "flex" }}>
+          <div style={{ minWidth: "60px", fontWeight: "600" }}>Client</div>
+          <div style={{ margin: "0 4px" }}>:</div>
+          <div style={{ fontWeight: "600" }}>CCCL</div>
         </div>
       </div>
     );
@@ -62,7 +53,7 @@ export default function StatusCard({ title }) {
   return (
     <div
       style={{
-        width: "20%",
+        width: "28%",
         height: "95%",
         backgroundColor: "#e3f1f4",
         border: "2px solid #507680",
