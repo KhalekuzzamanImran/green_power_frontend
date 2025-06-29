@@ -5,6 +5,7 @@ import PieChartsContainer from "./components/PieChartsContainer";
 import ReactFlowDiagram from "./components/ReactFlowDiagram";
 import Sidebar from "./components/Sidebar";
 import useData from "./hooks/useData";
+import useEnergyData from "./hooks/useEnergyData";
 import useEnyNowData from "./hooks/useEnyNowData";
 import useLatestData from "./hooks/useLatestData";
 
@@ -18,171 +19,44 @@ function App() {
     error: latestError,
   } = useLatestData();
 
-  const { enyNowData, loading, error } = useEnyNowData({ timeRange: "TODAY" });
-  const { enyNowData: enyNowMonthlyData } = useEnyNowData({
-    timeRange: "LAST_30_DAYS",
+  const { solarData, gridData, loading, error } = useData({
+    timeRange: "TODAYS",
   });
 
-  const { enyNowData: enyNowYearlyData } = useEnyNowData({
-    timeRange: "THIS_YEAR",
-  });
+  console.log(solarData, gridData);
 
-  const { generatorData, solarData, gridData } = useData({
+  const {
+    generatorEnergy: todayGenEnergy,
+    solarEnergy: todaySolarEnergy,
+    gridEnergy: todayGridEnergy,
+  } = useEnergyData({
     timeRange: "TODAY",
   });
 
-  const { generatorData: generatorMonthlyData, solarData: solarMonthlyData } =
-    useData({
-      timeRange: "LAST_30_DAYS",
-    });
+  const {
+    generatorEnergy: monthlyGenEnergy,
+    solarEnergy: monthlySolarEnergy,
+    gridEnergy: monthlyGridEnergy,
+  } = useEnergyData({
+    timeRange: "LAST_30_DAYS",
+  });
 
-  const { generatorData: generatorYearlyData, solarData: solarYearlyData } =
-    useData({
-      timeRange: "THIS_YEAR",
-    });
-
-  // Grid Energy consumption
-  let filteredGridEnergyConsumption = enyNowData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const dailyEnergyData =
-    filteredGridEnergyConsumption?.length >= 2
-      ? (
-          filteredGridEnergyConsumption[
-            filteredGridEnergyConsumption.length - 1
-          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  filteredGridEnergyConsumption = enyNowMonthlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const monthlyEnergyData =
-    filteredGridEnergyConsumption?.length >= 2
-      ? (
-          filteredGridEnergyConsumption[
-            filteredGridEnergyConsumption.length - 1
-          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  filteredGridEnergyConsumption = enyNowYearlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const yearlyEnergyData =
-    filteredGridEnergyConsumption?.length >= 2
-      ? (
-          filteredGridEnergyConsumption[
-            filteredGridEnergyConsumption.length - 1
-          ]?.zygsz - filteredGridEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  // Daily, Monthly, Yearly Generator Data
-  let filteredGeneratorEnergyConsumption = generatorData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const dailyGeneratorData =
-    filteredGeneratorEnergyConsumption?.length >= 2
-      ? (
-          filteredGeneratorEnergyConsumption[
-            filteredGeneratorEnergyConsumption.length - 1
-          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  filteredGeneratorEnergyConsumption = generatorMonthlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const monthlyGeneratorData =
-    filteredGeneratorEnergyConsumption?.length >= 2
-      ? (
-          filteredGeneratorEnergyConsumption[
-            filteredGeneratorEnergyConsumption.length - 1
-          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  filteredGeneratorEnergyConsumption = generatorYearlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-
-  const YearlyGeneratorData =
-    filteredGeneratorEnergyConsumption?.length >= 2
-      ? (
-          filteredGeneratorEnergyConsumption[
-            filteredGeneratorEnergyConsumption.length - 1
-          ]?.zygsz - filteredGeneratorEnergyConsumption[0]?.zygsz
-        )?.toFixed(2)
-      : 0;
-
-  // Daily, Monthly, Yearly Solar Data
-  let filteredSolarEnergyConsumption = solarData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-  const dailySolarData =
-    filteredSolarEnergyConsumption?.length >= 2
-      ? (
-          filteredSolarEnergyConsumption[
-            filteredSolarEnergyConsumption.length - 1
-          ]?.energy_consumption?.[0] -
-          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
-        )?.toFixed(2)
-      : 0;
-
-  filteredSolarEnergyConsumption = solarMonthlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-  const monthlySolarData =
-    filteredSolarEnergyConsumption?.length >= 2
-      ? (
-          filteredSolarEnergyConsumption[
-            filteredSolarEnergyConsumption.length - 1
-          ]?.energy_consumption?.[0] -
-          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
-        )?.toFixed(2)
-      : 0;
-
-  filteredSolarEnergyConsumption = solarYearlyData?.filter((obj) =>
-    Object.values(obj).every((value) => value !== null && value !== undefined)
-  );
-  const yearlySolarData =
-    filteredSolarEnergyConsumption?.length >= 2
-      ? (
-          filteredSolarEnergyConsumption[
-            filteredSolarEnergyConsumption.length - 1
-          ]?.energy_consumption?.[0] -
-          filteredSolarEnergyConsumption[0]?.energy_consumption?.[0]
-        )?.toFixed(2)
-      : 0;
-
-  const dailyTotal =
-    dailySolarData / 1000 + dailyGeneratorData + dailyEnergyData;
-  const monthlyTotal =
-    monthlySolarData / 1000 + monthlyGeneratorData + monthlyEnergyData;
-  const yearlyTotal =
-    yearlySolarData / 1000 + YearlyGeneratorData + yearlyEnergyData;
+  const { generatorEnergy, solarEnergy, gridEnergy } = useEnergyData({
+    timeRange: "THIS_YEAR",
+  });
 
   const pieChartData = [
     {
       title: "Daily",
-      data: [dailySolarData / 1000, dailyGeneratorData, dailyEnergyData],
-      total: dailyTotal,
+      data: [todaySolarEnergy / 1000, todayGenEnergy, todayGridEnergy],
     },
     {
       title: "Current month cumulative",
-      data: [monthlySolarData / 1000, monthlyGeneratorData, monthlyEnergyData],
-      total: monthlyTotal,
+      data: [monthlySolarEnergy / 1000, monthlyGenEnergy, monthlyGridEnergy],
     },
     {
       title: "Till Date cumulative",
-      data: [yearlySolarData / 1000, YearlyGeneratorData, yearlyEnergyData],
-      total: yearlyTotal,
+      data: [solarEnergy / 1000, generatorEnergy, gridEnergy],
     },
   ];
 
@@ -244,12 +118,12 @@ function App() {
         {/* Sidebar Section */}
         <Sidebar
           environmentData={environmentLatestData}
-          solarData={solarData}
-          yearlySolarData={yearlySolarData}
+          solarData={todaySolarEnergy}
+          yearlySolarData={solarEnergy}
         />
       </div>
       {/* Footer Section */}
-      <Footer solarData={solarData} gridData={gridData}/>
+      <Footer solarData={[]} gridData={[]} />
     </main>
   );
 }

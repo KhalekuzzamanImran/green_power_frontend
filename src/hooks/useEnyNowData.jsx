@@ -82,7 +82,7 @@ const useEnyNowData = ({ timeRange }) => {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
 
       const jsonData = await response.json();
-      setEnyNowData(jsonData?.data?.[0]?.data || []);
+      setEnyNowData(jsonData?.data?.[0]?.energy_consumption || 0);
     } catch (err) {
       console.error("Error fetching EnyNow data:", err);
       setError(err.message || "An unknown error occurred");

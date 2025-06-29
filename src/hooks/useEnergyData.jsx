@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useData = ({ timeRange }) => {
-  // const [generatorData, setGeneratorData] = useState([]);
-  const [solarData, setSolarData] = useState([]);
-  const [gridData, setGridData] = useState([]);
+const useEnergyData = ({ timeRange }) => {
+  const [generatorEnergy, setGeneratorEnergy] = useState([]);
+  const [solarEnergy, setSolarEnergy] = useState([]);
+  const [gridEnergy, setGridEnergy] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
@@ -66,9 +66,9 @@ const useData = ({ timeRange }) => {
 
     // Define endpoints inside useCallback to fix ESLint warning
     const endpoints = {
-      // generator: `${API_URL}/pop/cccl-generator-data/?device_code=GREEN_POWER_GENERATOR&topic=CCCL/PURBACHAL/ENM_01&time_range=${timeRange}`,
-      solar: `${API_URL}/pop/solar-readings/?time_range=${timeRange}`,
-      grid: `${API_URL}/pop/cpm-data/?device_code=3071523B00003&topic=MQTT_RT_DATA&time_range=${timeRange}`,
+      generator: `${API_URL}/pop/cccl-generator-data/?device_code=GREEN_POWER_GENERATOR&topic=CCCL/PURBACHAL/ENM_01&time_range=${timeRange}`,
+      solar: `${API_URL}/pop/solar-energy-consumption/?time_range=${timeRange}`,
+      grid: `${API_URL}/pop/cpm-enynow-data/?device_code=3071523B00003&topic=MQTT_ENY_NOW&time_range=${timeRange}`,
     };
 
     try {
@@ -93,16 +93,16 @@ const useData = ({ timeRange }) => {
       );
 
       // Update state only if responses are valid
-      // if (responses[0]) setGeneratorData(responses[0]?.data?.[0]?.data || []);
       if (responses[0]) {
-        console.log(responses[0]?.data);
-        setSolarData(responses[0]?.data || []);
-      }
-      if (responses[1]) {
-        console.log(responses[1]?.data);
-        setGridData(responses[1]?.data || []);
+        setGeneratorEnergy(responses[0]?.data?.[0]?.energy_consumption || 0);
       }
 
+      if (responses[1]) {
+        setSolarEnergy(responses[1]?.data?.energy_consumption || 0);
+      }
+      if (responses[2]) {
+        setGridEnergy(responses[2]?.data[0]?.energy_consumption || 0);
+      }
       setError(null);
     } catch (err) {
       console.error("Fetch Data Error:", err);
@@ -127,7 +127,7 @@ const useData = ({ timeRange }) => {
     return () => clearInterval(interval);
   }, [fetchData, token]);
 
-  return { solarData, gridData, loading, error };
+  return { generatorEnergy, solarEnergy, gridEnergy, loading, error };
 };
 
-export default useData;
+export default useEnergyData;

@@ -6,6 +6,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const TemporaryChart = ({ chartTitle, data = [0, 0, 0] }) => {
+  console.log(data);
   const [chartData, setChartData] = useState({
     labels: ["Solar", "Generator", "Grid"],
     datasets: [
